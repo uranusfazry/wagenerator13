@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <!-- Viewport optimized -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Uranusfazry WhatsApp Pro Creator 4K</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Load Html2Canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    :root{
+      /* --- PENGATURAN JARAK (PADDING) TERPISAH --- */
+      /* Atur jarak atas untuk Tampilan Desktop (Layar Lebar / Preview) */
+      --pad-top-desktop: 210px; 
+      
+      /* Atur jarak atas untuk Tampilan HP Asli (Layar Kecil) */
+      --pad-top-mobile: 170px;
+
+      /* --- DARK MODE (Default) --- */
+      --bg: #04070a; 
+      --card: #0b1216;
+      --muted: #8696a0;
+      --text-main: #e9edef;
+      --text-secondary: #8696a0;
+      --accent: #00a884; 
+      --modal-bg: #1f2c34; 
+      --input-bg: #2a3942;
+      --danger: #ef4444;
+      --badge-bg: #25d366; 
+      --badge-text: #000;
+      
+      font-family: 'Inter', system-ui, sans-serif;
+      --mobile-width: 480px; 
+    }
+
+    /* --- LIGHT MODE VARIABLES --- */
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --card: #f0f2f5;
+      --muted: #667781;
+      --text-main: #111b21;
+      --text-secondary: #667781;
+      --accent: #008069;
+      --modal-bg: #ffffff;
+      --input-bg: #f0f2f5;
+      --danger: #ea0038;
+      --badge-bg: #25d366;
+      --badge-text: #fff;
+    }
+
+    *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+    
+    /* --- LAYOUT SYSTEM UPDATE --- */
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden; /* Mencegah scroll pada body browser utama */
+        background-color: #111; /* Background Desktop Luar */
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Container Utama (Simulasi Layar HP) */
+    .app-container {
+        width: 100%;
+        max-width: var(--mobile-width);
+        height: 100%;
+        background: linear-gradient(180deg, var(--bg), #020305);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; /* Clip elemen yang keluar */
+        box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        transition: background 0.3s;
+    }
+
+    /* Override Background untuk Light Mode */
+    [data-theme="light"] .app-container {
+        background: var(--bg);
+    }
+
+    /* --- UTILS --- */
+    .locked-image {
+      width: 100%; display: block;
+      pointer-events: none; user-select: none; -webkit-user-drag: none;
+      transition: filter 0.3s;
+    }
+    [data-theme="light"] .locked-image {
+       filter: invert(1) hue-rotate(180deg);
+    }
+    
+    /* --- HEADER & FOOTER (Absolute Positioning inside Container) --- */
+    .topbar { 
+        position: absolute; 
+        top: 0; left: 0; right: 0; 
+        z-index: 20; /* Z-index tinggi agar selalu di atas list */
+        background: var(--bg); 
+        transition: background 0.3s;
+    }
+    
+    .bottom { 
+        position: absolute; 
+        bottom: 0; left: 0; right: 0; 
+        z-index: 20;
+        background: linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.3)); 
+        pointer-events: none; 
+    }
+    .bottom img { pointer-events: none; }
+
+    /* --- CONTENT LIST (SCROLLABLE AREA) --- */
+    .list {
+        flex: 1; /* Mengisi ruang penuh */
+        overflow-y: auto; /* KUNCI: Mengaktifkan scroll vertikal */
+        overflow-x: hidden;
+        
+        /* MENGGUNAKAN VARIABEL DESKTOP SEBAGAI DEFAULT */
+        padding-top: var(--pad-top-desktop);
+        padding-bottom: 100px; 
+        
+        /* Smooth Scrolling untuk Mobile */
+        -webkit-overflow-scrolling: touch; 
+        
+        /* Hide Scrollbar tapi tetap bisa scroll */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE 10+ */
+    }
+    .list::-webkit-scrollbar { 
+        width: 0px;
+        background: transparent; 
+    }
+
+    /* --- MEDIA QUERY KHUSUS MOBILE --- */
+    /* Jika lebar layar kurang dari 480px (HP Asli), gunakan jarak mobile */
+    @media screen and (max-width: 480px) {
+        .list {
+            padding-top: var(--pad-top-mobile);
+        }
+    }
+    
+    .item{
+      display:flex; align-items:center; gap:14px;
+      padding:12px 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .item:active{background:rgba(255,255,255,0.03)}
+    [data-theme="light"] .item:active{background:rgba(0,0,0,0.05)}
+    
+    .avatar{
+      width:50px;height:50px;border-radius:50%;flex:0 0 50px;overflow:hidden;
+      background:#636e72; 
+      display:flex;align-items:center;justify-content:center;
+      font-weight:600; font-size: 20px; color: #fff;
+      transition: background 0.3s ease;
+      border: none;
+    }
+    [data-theme="light"] .avatar { border: none; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .meta{
+      flex:1; min-width:0;
+      padding-bottom: 14px;
+      display: flex; flex-direction: column; justify-content: center;
+      /* border-bottom: 1px solid rgba(134, 150, 160, 0.15); <-- INI YANG DIHAPUS */
+      border-bottom: none; 
+    }
+    /* [data-theme="light"] .meta { border-bottom: 1px solid rgba(0, 0, 0, 0.05); } <-- INI JUGA DIHAPUS/KOMENTAR */
+    
+    .top-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+    .name{font-weight:500; font-size: 17px; color: var(--text-main);}
+    .time{color:var(--muted); font-size:12px;}
+    .bot-row { display: flex; justify-content: space-between; align-items: center; }
+    
+    .preview{
+      color:var(--muted); font-size:14px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      max-width: 85%;
+    }
+    
+    .badge{
+      min-width:20px; height:20px; border-radius:10px;
+      background:var(--badge-bg); 
+      display:inline-flex; align-items:center; justify-content:center;
+      font-weight:700; color:var(--badge-text); padding:0 6px; 
+      font-size: 11px; line-height: 1;
+    }
+
+    /* --- FAB (NEW CHAT) --- */
+    .fab{
+      position:absolute; 
+      bottom: 125px;
+      right: 20px; 
+      width: 80px; height: 80px; 
+      background: transparent;
+      display:flex; align-items:center; justify-content:center;
+      cursor: pointer; z-index: 25;
+      transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .fab img { 
+        width: 130px; 
+        max-width: none; 
+        pointer-events: none; 
+        transition: filter 0.3s; 
+    }
+    .fab:active { transform: scale(0.92); }
+
+    /* --- MODAL SYSTEM --- */
+    .modal-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex; align-items: flex-end; 
+      justify-content: center;
+      z-index: 100;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(2px);
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    
+    .modal-container {
+      background: var(--modal-bg);
+      width: 100%;
+      border-radius: 20px 20px 0 0; 
+      padding: 24px 24px 40px 24px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      color: var(--text-main);
+    }
+    [data-theme="light"] .modal-container { box-shadow: 0 -4px 20px rgba(0,0,0,0.15); }
+    
+    .modal-overlay.open .modal-container {
+      transform: translateY(0);
+    }
+
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .modal-title { font-size: 20px; font-weight: 600; color: var(--text-main); }
+    
+    .header-actions { display: flex; align-items: center; gap: 8px; }
+
+    .btn-close-icon { background:none; border:none; color:var(--muted); font-size:28px; cursor:pointer; line-height: 1; padding: 4px; }
+    
+    .btn-header-icon {
+      background: rgba(0, 168, 132, 0.15);
+      border: none;
+      color: var(--accent);
+      border-radius: 12px;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-header-icon:active { background: rgba(0, 168, 132, 0.25); transform: scale(0.95); }
+    .btn-header-icon svg { width: 20px; height: 20px; fill: currentColor; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 13px; color: var(--accent); margin-bottom: 6px; font-weight: 500; }
+    
+    .form-input {
+      width: 100%; padding: 12px 14px;
+      background: var(--input-bg); 
+      border: 1px solid transparent;
+      border-radius: 10px; color: var(--text-main); font-size: 15px;
+      font-family: inherit; outline: none;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .form-input:focus { border-color: var(--accent); }
+
+    .row { display: flex; gap: 12px; }
+    
+    /* Avatar Selector */
+    .avatar-selector {
+      display: flex; gap: 12px; align-items: center;
+      background: var(--input-bg); padding: 10px; border-radius: 12px;
+    }
+    .avatar-preview-small {
+      width: 40px; height: 40px; border-radius: 50%; background: #636e72;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+      font-weight: bold; color: #fff; flex-shrink: 0;
+    }
+    .file-btn {
+      font-size: 13px; color: var(--accent); font-weight: 600;
+      cursor: pointer; padding: 4px 8px;
+    }
+
+    /* Action Buttons */
+    .modal-actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn {
+      flex: 1; padding: 14px; border: none; border-radius: 50px;
+      font-weight: 600; font-size: 15px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: filter 0.2s;
+    }
+    .btn:active { filter: brightness(0.8); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    [data-theme="light"] .btn-primary { color: #fff; }
+
+    .btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); opacity: 0.7; }
+    .btn-danger:active { background: rgba(239,68,68,0.1); opacity: 1; }
+
+    /* --- CONFIRMATION POPUP (Custom) --- */
+    .confirm-overlay {
+      position: absolute; top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.7); z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .confirm-overlay.show { opacity: 1; pointer-events: auto; }
+
+    .confirm-box {
+      background: var(--modal-bg); width: 85%; max-width: 320px;
+      border-radius: 18px; padding: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      transform: scale(0.9); transition: transform 0.2s;
+      color: var(--text-main);
+    }
+    .confirm-overlay.show .confirm-box { transform: scale(1); }
+
+    .confirm-text { color: var(--text-main); font-size: 16px; margin-bottom: 24px; line-height: 1.5; }
+    .confirm-buttons { display: flex; justify-content: flex-end; gap: 20px; }
+    .c-btn { background: none; border: none; font-weight: 600; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px;}
+    .c-btn-cancel { color: var(--accent); }
+    .c-btn-ok { color: var(--accent); } 
+    .c-btn:active { background: rgba(100,100,100,0.1); }
+
+    /* --- TOAST NOTIFICATION --- */
+    .toast {
+      position: absolute; bottom: 100px; 
+      left: 50%; transform: translateX(-50%) translateY(20px);
+      background: #333; color: white; padding: 12px 24px;
+      border-radius: 50px; font-size: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 300; pointer-events: none; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    
+    /* Loading Overlay */
+    .loading-overlay {
+        position: absolute; top:0; left:0; right:0; bottom:0;
+        background: rgba(0,0,0,0.8); z-index: 999;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: #00a884; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .loading-overlay.show { opacity: 1; pointer-events: auto; }
+    .spinner {
+        width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1);
+        border-top-color: #00a884; border-radius: 50%;
+        animation: spin 1s linear infinite; margin-bottom: 15px;
+    }
+    @keyframes spin { to {transform: rotate(360deg);} }
+
+  </style>
+</head>
+<body>
+  <!-- CONTAINER UTAMA (SIMULASI HP) -->
+  <div class="app-container">
+
+      <!-- LOADING SCREENSHOT -->
+      <div class="loading-overlay" id="loadingOverlay">
+          <div class="spinner"></div>
+          <div>Memproses Kualitas 4K...</div>
+      </div>
+
+      <div class="topbar">
+        <img src="https://i.imghippo.com/files/wC5348bFU.jpg" draggable="false" class="locked-image" alt="Top Bar" crossorigin="anonymous" />
+      </div>
+      
+      <!-- CONTENT AREA (SCROLLABLE) -->
+      <div class="list" id="chatList">
+          <!-- Chat items will be injected here -->
+      </div>
+
+      <!-- FAB -->
+      <div class="fab" title="Buat Chat Baru" onclick="openEditor()">
+        <img id="fabIcon" src="https://i.imghippo.com/files/toKE4058Rk.png" draggable="false" alt="New Chat" style="transform: translate(15px, 10px); width: 100%;" crossorigin="anonymous">
+      </div>
+
+      <div class="bottom">
+        <img src="https://i.imghippo.com/files/JV5005ev.jpg" draggable="false" class="locked-image" alt="Bottom Bar" crossorigin="anonymous" />
+      </div>
+
+      <!-- EDITOR MODAL -->
+      <div class="modal-overlay" id="editorModal">
+        <div class="modal-container">
+          <div class="modal-header">
+            <div class="modal-title" id="modalTitle">Edit Chat</div>
+            <div class="header-actions">
+                <button class="btn-header-icon" title="Ganti Tema" onclick="toggleTheme()">
+                    <svg id="themeIcon" viewBox="0 0 24 24">
+                        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                    </svg>
+                </button>
+
+                <button class="btn-header-icon" title="Download Screenshot" onclick="downloadFromModal()">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19,9h-4V3H9v6H5l7,7L19,9z M5,18v2h14v-2H5z"/>
+                    </svg>
+                </button>
+                
+                <button class="btn-close-icon" onclick="closeEditor()">&times;</button>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Nama Kontak</label>
+            <input type="text" class="form-input" id="inpName" placeholder="Nama...">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Pesan Terakhir</label>
+            <input type="text" class="form-input" id="inpMsg" placeholder="Pesan...">
+          </div>
+
+          <div class="row">
+            <div class="form-group" style="flex:1">
+              <label class="form-label">Waktu</label>
+              <input type="text" class="form-input" id="inpTime" placeholder="12:00">
+            </div>
+            <div class="form-group" style="width:80px">
+              <label class="form-label">Unread</label>
+              <input type="number" class="form-input" id="inpUnread" value="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Foto Profil</label>
+            <div class="avatar-selector">
+                <div class="avatar-preview-small" id="avatarPrev">A</div>
+                <div style="flex:1">
+                    <input type="text" class="form-input" id="inpAvatarText" placeholder="Ketik Inisial" style="margin-bottom:6px; font-size:13px; padding:8px;">
+                    <label class="file-btn">
+                        + Upload Foto
+                        <input type="file" id="inpAvatarFile" accept="image/*" style="display:none">
+                    </label>
+                </div>
+            </div>
+            <input type="hidden" id="currentImageBase64">
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn btn-danger" id="btnDelete" onclick="tryDelete()">Hapus</button>
+            <button class="btn btn-primary" onclick="saveChat()">Simpan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOM CONFIRM MODAL -->
+      <div class="confirm-overlay" id="confirmModal">
+        <div class="confirm-box">
+          <div class="confirm-text" id="confirmText">Konfirmasi?</div>
+          <div class="confirm-buttons">
+            <button class="c-btn c-btn-cancel" onclick="closeConfirm()">Batal</button>
+            <button class="c-btn c-btn-ok" id="confirmOkBtn">Ya</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOAST NOTIFICATION -->
+      <div class="toast" id="toast">Notifikasi</div>
+
+  </div> <!-- END APP CONTAINER -->
+
+  <script>
+    const avatarColors = [
+        '#00A884', '#FF5252', '#FF9800', '#3F51B5', '#2196F3', 
+        '#9C27B0', '#00BCD4', '#4CAF50', '#795548', '#607D8B', '#E91E63'
+    ];
+
+    function getRandomColor() {
+        return avatarColors[Math.floor(Math.random() * avatarColors.length)];
+    }
+
+    // DATA DUMMY YANG LEBIH BANYAK AGAR BISA SCROLL
+    let chats = [
+      {name:'Tiara Cantik ❤️', msg:'Semangat terus ya ayang Fazry kerjanya!', time:'20.45', unread:2, avatar:'T', isImage: false, color: getRandomColor()},
+      {name:'Vania', msg:'Jangan nyerah Fazry, kamu pasti sukses!', time:'20.41', unread:5, avatar:'V', isImage: false, color: getRandomColor()},
+      {name:'Amelia', msg:'Inget mimpi-mimpi kamu Fazry, gas terus!', time:'20.35', unread:1, avatar:'A', isImage: false, color: getRandomColor()},
+      {name:'Bella', msg:'Fazry hebat, aku bangga banget sama kamu', time:'20.25', unread:0, avatar:'B', isImage: false, color: getRandomColor()},
+      {name:'Citra', msg:'Lelah boleh, nyerah jangan ya Fazry', time:'19.15', unread:3, avatar:'C', isImage: false, color: getRandomColor()},
+      {name:'Dinda', msg:'Fokus sama tujuan kamu Fazry, semangat!', time:'18.30', unread:0, avatar:'D', isImage: false, color: getRandomColor()},
+      {name:'Erika', msg:'Semoga harimu menyenangkan ya Fazry', time:'17.45', unread:1, avatar:'E', isImage: false, color: getRandomColor()},
+      {name:'Fani', msg:'Fazry jangan lupa istirahat dan makan ya', time:'16.20', unread:0, avatar:'F', isImage: false, color: getRandomColor()},
+      {name:'Gisel', msg:'Masa depan cerah menanti Fazry, ayo bangkit!', time:'14.10', unread:0, avatar:'G', isImage: false, color: getRandomColor()},
+      {name:'Hani', msg:'Apapun rintangannya, Fazry pasti bisa lewatin', time:'13.00', unread:1, avatar:'H', isImage: false, color: getRandomColor()},
+      {name:'Intan', msg:'Percaya sama prosesnya ya Fazry', time:'Kemarin', unread:0, avatar:'I', isImage: false, color: getRandomColor()},
+      {name:'Jessica', msg:'Doa terbaik selalu buat Fazry disana', time:'Kemarin', unread:0, avatar:'J', isImage: false, color: getRandomColor()},
+    ];
+    
+    let editIdx = -1;
+    let tempDraftColor = '';
+    let isLightMode = false;
+
+    const listEl = document.getElementById('chatList');
+    const modal = document.getElementById('editorModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const inpName = document.getElementById('inpName');
+    const inpMsg = document.getElementById('inpMsg');
+    const inpTime = document.getElementById('inpTime');
+    const inpUnread = document.getElementById('inpUnread');
+    const inpAvatarText = document.getElementById('inpAvatarText');
+    const inpAvatarFile = document.getElementById('inpAvatarFile');
+    const avatarPrev = document.getElementById('avatarPrev');
+    const hiddenBase64 = document.getElementById('currentImageBase64');
+    const btnDelete = document.getElementById('btnDelete');
+    const confirmModal = document.getElementById('confirmModal');
+    const confirmTextEl = document.getElementById('confirmText');
+    const confirmOkBtn = document.getElementById('confirmOkBtn');
+    const toastEl = document.getElementById('toast');
+    const themeIcon = document.getElementById('themeIcon');
+    const fabIcon = document.getElementById('fabIcon');
+
+    function toggleTheme() {
+        isLightMode = !isLightMode;
+        if(isLightMode) {
+            document.body.setAttribute('data-theme', 'light');
+            themeIcon.innerHTML = '<path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.79 1.41-1.41-1.79-1.79-1.41 1.41zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/>';
+            fabIcon.src = "https://i.imghippo.com/files/NLt8463pM.png";
+        } else {
+            document.body.removeAttribute('data-theme');
+            themeIcon.innerHTML = '<path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>';
+            fabIcon.src = "https://i.imghippo.com/files/toKE4058Rk.png";
+        }
+    }
+
+    function render() {
+      listEl.innerHTML = '';
+      chats.forEach((c, idx) => {
+        const el = document.createElement('div');
+        el.className = 'item';
+        el.onclick = () => openEditor(idx);
+        let avatarContent = c.avatar;
+        if(!c.color) c.color = getRandomColor();
+        if(c.isImage) {
+            avatarContent = `<img src="${c.avatar}" alt="img">`;
+        }
+        el.innerHTML = `
+          <div class="avatar" style="background-color: ${c.color}">
+            ${avatarContent}
+          </div>
+          <div class="meta">
+            <div class="top-row">
+                <div class="name">${c.name}</div>
+                <div class="time">${c.time}</div>
+            </div>
+            <div class="bot-row">
+                <div class="preview">${c.msg || ''}</div>
+                ${c.unread > 0 ? `<div class="badge">${c.unread}</div>` : ''}
+            </div>
+          </div>
+        `;
+        listEl.appendChild(el);
+      });
+    }
+
+    function openEditor(idx = -1) {
+      editIdx = idx;
+      inpAvatarFile.value = '';
+      if(idx === -1) {
+        modalTitle.innerText = "Chat Baru";
+        inpName.value = "";
+        inpMsg.value = "";
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        inpTime.value = `${hours}:${minutes}`;
+        inpUnread.value = 1;
+        inpAvatarText.value = "";
+        hiddenBase64.value = "";
+        btnDelete.style.display = "none";
+        tempDraftColor = getRandomColor();
+        updateAvatarPreview('?', false, tempDraftColor);
+      } else {
+        const c = chats[idx];
+        modalTitle.innerText = "Edit Chat";
+        inpName.value = c.name;
+        inpMsg.value = c.msg;
+        inpTime.value = c.time;
+        inpUnread.value = c.unread;
+        btnDelete.style.display = "block";
+        tempDraftColor = c.color;
+        if(c.isImage) {
+            hiddenBase64.value = c.avatar;
+            inpAvatarText.value = "";
+            updateAvatarPreview(c.avatar, true, tempDraftColor);
+        } else {
+            hiddenBase64.value = "";
+            inpAvatarText.value = c.avatar;
+            updateAvatarPreview(c.avatar, false, tempDraftColor);
+        }
+      }
+      modal.classList.add('open');
+    }
+
+    function closeEditor() {
+      modal.classList.remove('open');
+    }
+
+    inpAvatarText.addEventListener('input', (e) => {
+        if(e.target.value) {
+            hiddenBase64.value = "";
+            updateAvatarPreview(e.target.value, false, tempDraftColor);
+        }
+    });
+
+    inpAvatarFile.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                hiddenBase64.value = e.target.result; 
+                inpAvatarText.value = "";
+                updateAvatarPreview(e.target.result, true, tempDraftColor);
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    function updateAvatarPreview(val, isImg, bgColor) {
+        avatarPrev.style.backgroundColor = bgColor;
+        if(isImg) {
+            avatarPrev.innerHTML = `<img src="${val}" style="width:100%;height:100%;object-fit:cover">`;
+        } else {
+            avatarPrev.innerHTML = val.substring(0,2).toUpperCase();
+        }
+    }
+
+    function saveChat() {
+        const name = inpName.value || "Tanpa Nama";
+        let finalAvatar = "A";
+        let isImage = false;
+        if(hiddenBase64.value) {
+            finalAvatar = hiddenBase64.value;
+            isImage = true;
+        } else {
+            finalAvatar = inpAvatarText.value.substring(0,2).toUpperCase() || name.charAt(0).toUpperCase();
+        }
+        const newObj = {
+            name: name,
+            msg: inpMsg.value,
+            time: inpTime.value,
+            unread: parseInt(inpUnread.value) || 0,
+            avatar: finalAvatar,
+            isImage: isImage,
+            color: tempDraftColor
+        };
+        if(editIdx === -1) {
+            chats.unshift(newObj);
+        } else {
+            chats[editIdx] = newObj;
+        }
+        render();
+        closeEditor();
+        showToast("Chat disimpan");
+    }
+
+    function tryDelete() {
+        closeEditor();
+        setTimeout(() => {
+             showConfirm(() => {
+                if(editIdx > -1) {
+                    chats.splice(editIdx, 1);
+                    render();
+                    showToast("Chat dihapus");
+                }
+            }, "Hapus chat ini?");
+        }, 200);
+    }
+
+    let onConfirmAction = null;
+    function showConfirm(action, message) {
+        onConfirmAction = action;
+        confirmTextEl.innerText = message || "Konfirmasi?";
+        confirmOkBtn.innerText = message && message.includes("Hapus") ? "Hapus" : "Ya";
+        confirmModal.classList.add('show');
+    }
+
+    function closeConfirm() {
+        confirmModal.classList.remove('show');
+        onConfirmAction = null;
+    }
+
+    confirmOkBtn.onclick = () => {
+        if(onConfirmAction) onConfirmAction();
+        closeConfirm();
+    }
+
+    let toastTimeout;
+    function showToast(msg) {
+        toastEl.innerText = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toastEl.classList.remove('show');
+        }, 3000);
+    }
+
+    function downloadFromModal() {
+        closeEditor();
+        setTimeout(() => {
+             showConfirm(processScreenshot, "Simpan tampilan dengan kualitas 4K?");
+        }, 350);
+    }
+
+    function processScreenshot() {
+        const loading = document.getElementById('loadingOverlay');
+        loading.classList.add('show');
+        const fab = document.querySelector('.fab');
+        fab.style.display = 'none';
+        
+        // Scroll container to top
+        const list = document.querySelector('.list');
+        // Optional: Scroll to top before screenshot if needed
+        // list.scrollTop = 0; 
+
+        const appContainer = document.querySelector('.app-container');
+        
+        setTimeout(() => {
+            let currentBg = isLightMode ? '#ffffff' : '#04070a';
+            
+            const qualityScale = 5; 
+
+            html2canvas(appContainer, {
+                scale: qualityScale, 
+                useCORS: true, 
+                allowTaint: true,
+                backgroundColor: currentBg,
+                logging: false, 
+                ignoreElements: (element) => {
+                    return element.id === 'loadingOverlay';
+                },
+                onclone: (clonedDoc) => {
+                    if (isLightMode) {
+                        const images = clonedDoc.querySelectorAll('.locked-image');
+                        images.forEach(img => {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = img.naturalWidth || img.width; 
+                            canvas.height = img.naturalHeight || img.height;
+                            const ctx = canvas.getContext('2d');
+                            ctx.filter = 'invert(1) hue-rotate(180deg)';
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            img.src = canvas.toDataURL();
+                            img.style.filter = 'none'; 
+                        });
+                    }
+                    // Memastikan scrollbar tidak ikut terfoto (walaupun sudah di-hide di CSS)
+                    const clonedList = clonedDoc.getElementById('chatList');
+                    if(clonedList) {
+                        clonedList.style.overflow = 'visible'; 
+                    }
+                }
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'WA-Mock-Scroll-' + Date.now() + '.png';
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+                fab.style.display = 'flex';
+                loading.classList.remove('show');
+                showToast("Screenshot 4K berhasil disimpan!");
+            }).catch(err => {
+                console.error(err);
+                fab.style.display = 'flex';
+                loading.classList.remove('show');
+                showToast("Gagal membuat screenshot");
+            });
+        }, 800);
+    }
+
+    // INIT
+    render();
+  </script>
+</body>
+</html>
