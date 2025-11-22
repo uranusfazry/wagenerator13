@@ -1,130 +1,1155 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <!-- Viewport optimized -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>Uranusfazry WhatsApp Pro Creator 4K</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Load Html2Canvas -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  
-  <style>
-    .app-container,body,html{overflow:hidden;height:100%}.btn-close-icon,.fab,.item{cursor:pointer}.preview,.toast{white-space:nowrap}:root{--pad-top-desktop:210px;--pad-top-mobile:170px;--bg:#04070a;--card:#0b1216;--muted:#8696a0;--text-main:#e9edef;--text-secondary:#8696a0;--accent:#00a884;--modal-bg:#1f2c34;--input-bg:#2a3942;--danger:#ef4444;--badge-bg:#25d366;--badge-text:#000;font-family:Inter,system-ui,sans-serif;--mobile-width:480px}[data-theme=light]{--bg:#ffffff;--card:#f0f2f5;--muted:#667781;--text-main:#111b21;--text-secondary:#667781;--accent:#008069;--modal-bg:#ffffff;--input-bg:#f0f2f5;--danger:#ea0038;--badge-bg:#25d366;--badge-text:#fff}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body,html{margin:0;background-color:#111}body{display:flex;justify-content:center;align-items:center}.app-container{width:100%;max-width:var(--mobile-width);background:linear-gradient(180deg,var(--bg),#020305);position:relative;display:flex;flex-direction:column;box-shadow:0 0 50px rgba(0,0,0,.5);transition:background .3s}.topbar,[data-theme=light] .app-container{background:var(--bg)}.bottom,.topbar{position:absolute;right:0;z-index:20;left:0}.fab img,.locked-image{transition:filter .3s;pointer-events:none}.locked-image{width:100%;display:block;user-select:none;-webkit-user-drag:none}.avatar,.bot-row,.item,.meta,.top-row{display:flex}[data-theme=light] .locked-image{filter:invert(1) hue-rotate(180deg)}.topbar{top:0;transition:background .3s}.bottom{bottom:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.3));pointer-events:none}.bottom img{pointer-events:none}.list{flex:1;overflow-y:auto;overflow-x:hidden;padding-top:var(--pad-top-desktop);padding-bottom:100px;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none}.badge,.item{align-items:center}.list::-webkit-scrollbar{width:0;background:0 0}@media screen and (max-width:480px){.list{padding-top:var(--pad-top-mobile)}}.item{gap:14px;padding:12px 16px;transition:background .2s;position:relative}.item:active{background:rgba(255,255,255,.03)}[data-theme=light] .item:active{background:rgba(0,0,0,.05)}.avatar{width:50px;height:50px;border-radius:50%;flex:0 0 50px;overflow:hidden;background:#636e72;align-items:center;justify-content:center;font-weight:600;font-size:20px;color:#fff;transition:background .3s;border:none}[data-theme=light] .avatar{border:none}.avatar img{width:100%;height:100%;object-fit:cover}.meta{flex:1;min-width:0;padding-bottom:14px;flex-direction:column;justify-content:center;border-bottom:none}.top-row{justify-content:space-between;align-items:baseline;margin-bottom:4px}.name{font-weight:500;font-size:17px;color:var(--text-main)}.preview,.time{color:var(--muted)}.time{font-size:12px}.bot-row{justify-content:space-between;align-items:center}.preview{font-size:14px;overflow:hidden;text-overflow:ellipsis;max-width:85%}.badge{min-width:20px;height:20px;border-radius:10px;background:var(--badge-bg);display:inline-flex;justify-content:center;font-weight:700;color:var(--badge-text);padding:0 6px;font-size:11px;line-height:1}.fab,.header-actions{align-items:center;display:flex}.fab{position:absolute;bottom:125px;right:20px;width:80px;height:80px;background:0 0;justify-content:center;z-index:25;transition:transform .15s cubic-bezier(.175, .885, .32, 1.275)}.fab img{width:130px;max-width:none}.fab:active{transform:scale(.92)}.modal-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}.confirm-overlay.show,.loading-overlay.show,.modal-overlay.open{opacity:1;pointer-events:auto}.modal-container{background:var(--modal-bg);width:100%;border-radius:20px 20px 0 0;padding:24px 24px 40px;box-shadow:0 -4px 20px rgba(0,0,0,.4);transform:translateY(100%);transition:transform .3s cubic-bezier(.2, .8, .2, 1);color:var(--text-main)}[data-theme=light] .modal-container{box-shadow:0 -4px 20px rgba(0,0,0,.15)}.modal-overlay.open .modal-container{transform:translateY(0)}.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.modal-title{font-size:20px;font-weight:600;color:var(--text-main)}.header-actions{gap:8px}.btn-close-icon{background:0 0;border:none;color:var(--muted);font-size:28px;line-height:1;padding:4px}.btn-header-icon{background:rgba(0,168,132,.15);border:none;color:var(--accent);border-radius:12px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .2s}.btn-header-icon:active{background:rgba(0,168,132,.25);transform:scale(.95)}.btn-header-icon svg{width:20px;height:20px;fill:currentColor}.form-group{margin-bottom:16px}.form-label{display:block;font-size:13px;color:var(--accent);margin-bottom:6px;font-weight:500}.form-input{width:100%;padding:12px 14px;background:var(--input-bg);border:1px solid transparent;border-radius:10px;color:var(--text-main);font-size:15px;font-family:inherit;outline:0;transition:border-color .2s,background .2s,color .2s}.form-input:focus{border-color:var(--accent)}.row{display:flex;gap:12px}.avatar-selector{display:flex;gap:12px;align-items:center;background:var(--input-bg);padding:10px;border-radius:12px}.avatar-preview-small{width:40px;height:40px;border-radius:50%;background:#636e72;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex-shrink:0}.btn,.c-btn,.file-btn{font-weight:600;cursor:pointer}.file-btn{font-size:13px;color:var(--accent);padding:4px 8px}.modal-actions{display:flex;gap:12px;margin-top:24px}.btn{flex:1;padding:14px;border:none;border-radius:50px;font-size:15px;display:flex;align-items:center;justify-content:center;transition:filter .2s}.btn:active{filter:brightness(.8)}.btn-primary{background:var(--accent);color:#fff}[data-theme=light] .btn-primary{color:#fff}.btn-danger{background:0 0;color:var(--danger);border:1px solid var(--danger);opacity:.7}.confirm-overlay,.loading-overlay,.toast{position:absolute;opacity:0;pointer-events:none}.btn-danger:active{background:rgba(239,68,68,.1);opacity:1}.confirm-overlay{top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:center;justify-content:center;transition:opacity .2s}.confirm-box{background:var(--modal-bg);width:85%;max-width:320px;border-radius:18px;padding:24px;box-shadow:0 10px 40px rgba(0,0,0,.5);transform:scale(.9);transition:transform .2s;color:var(--text-main)}.confirm-overlay.show .confirm-box{transform:scale(1)}.confirm-text{color:var(--text-main);font-size:16px;margin-bottom:24px;line-height:1.5}.c-btn,.toast{font-size:14px}.confirm-buttons{display:flex;justify-content:flex-end;gap:20px}.c-btn{background:0 0;border:none;padding:8px 12px;border-radius:4px}.c-btn-cancel,.c-btn-ok{color:var(--accent)}.c-btn:active{background:rgba(100,100,100,.1)}.toast{bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:#333;color:#fff;padding:12px 24px;border-radius:50px;box-shadow:0 4px 12px rgba(0,0,0,.3);transition:.3s cubic-bezier(.175, .885, .32, 1.275);z-index:300}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.loading-overlay{top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#00a884;transition:opacity .3s}.spinner{width:40px;height:40px;border:4px solid rgba(255,255,255,.1);border-top-color:#00a884;border-radius:50%;animation:1s linear infinite spin;margin-bottom:15px}@keyframes spin{to{transform:rotate(360deg)}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UranusFazry MLBB Portal | Hayabusa Shura (Responsive)</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <style>
+        /* Import Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap');
+
+        /* Color Variables re‑themed for Hayabusa Shura */
+        :root {
+            --flame-red: #ce00a7;       /* vibrant magenta */
+            --lava-orange: #4a0072;     /* deep royal purple */
+            --gold: #00c8e0;            /* cool teal accent */
+            --dark-stone: #0b0e31;      /* midnight indigo */
+            --deep-magma: #17051e;      /* dark violet */
+            --bright-gold: #ff5dd8;     /* neon pink highlight */
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, var(--dark-stone) 0%, var(--deep-magma) 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Background Effects */
+        #bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-media {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.3) saturate(1.5) hue-rotate(10deg);
+            transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+        }
+
+        #bg-video {
+            opacity: 1;
+            z-index: 1;
+        }
+        
+        #bg-image {
+            opacity: 0;
+            z-index: 0;
+        }
+
+        @media (min-width: 1024px) {
+            .bg-media {
+                width: 100vh;
+                height: 100vw;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(-90deg);
+            }
+        }
+
+        /* Subtle grid overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:  
+                linear-gradient(rgba(255, 93, 216, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(74, 0, 114, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Main Content Styling & Responsiveness */
+        main.content-layer {
+            flex-grow: 1;
+            padding-top: 120px; /* Default desktop padding */
+            padding-bottom: 2rem;
+        }
+
+        /* Typography */
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+
+        .flame-text { color: var(--flame-red); }
+        .gold-text { color: var(--gold); }
+        .lava-text { color: var(--gold); }
+
+        /* Header Typography Sizes */
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            transition: font-size 0.3s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(11, 14, 49, 0.95);
+            border-bottom: 1px solid rgba(255, 93, 216, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .navbar .container > div {
+            height: 70px;
+            transition: height 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .navbar .container > div {
+                height: 90px;
+            }
+        }
+
+        .nav-item {
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-item:hover span, .nav-item:hover i {
+            color: var(--gold);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            display: none;
+            position: absolute;
+            background: #0b0e31;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            margin-top: 12px;
+            animation: dropFadeIn 0.3s ease;
+        }
+
+        @keyframes dropFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .group:hover .dropdown {
+            display: block;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 14, 49, 0.9);
+            z-index: 55;
+            transition: opacity 0.3s ease;
+        }
+
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 80%;
+            max-width: 320px;
+            background: #0b0e31;
+            border-left: 1px solid var(--gold);
+            z-index: 60;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Buttons */
+        .btn-lava {
+            font-family: 'Cinzel', serif;
+            background: linear-gradient(135deg, var(--lava-orange), var(--flame-red));
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .btn-lava:hover {
+            transform: translateY(-3px);
+            border-color: var(--bright-gold);
+            background: linear-gradient(135deg, var(--flame-red), var(--lava-orange));
+        }
+
+        .btn-lava:active {
+            transform: translateY(0) scale(0.97);
+            transition-duration: 0.1s;
+        }
+
+        .btn-secondary {
+            font-family: 'Cinzel', serif;
+            background: rgba(0, 200, 224, 0.1);
+            border: 1px solid rgba(0, 200, 224, 0.4);
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            color: var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 200, 224, 0.2);
+            border-color: var(--gold);
+        }
+
+        /* Portal Cards */
+        .portal-card {
+            background: rgba(23, 5, 30, 0.8);
+            border: 1px solid;
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px);
+            background: rgba(23, 5, 30, 1);
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            color: rgba(206, 0, 167, 0.7);
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 20;
+            opacity: 0.7;
+            border: 1px solid rgba(206, 0, 167, 0.5);
+        }
+
+        .portal-card:hover .delete-btn {
+            opacity: 1;
+        }
+
+        .delete-btn:hover {
+            color: var(--flame-red);
+            background: rgba(0, 0, 0, 0.6);
+            transform: scale(1.15);
+        }
+
+        /* Profile/Avatar */
+        .profile {
+            margin: 0 auto 2rem;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--gold);
+            position: relative;
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .profile img, .profile video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Time Display */
+        .time-container {
+            background: rgba(23, 5, 30, 0.9);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            transition: padding 0.3s ease;
+        }
+        
+        #time {
+            font-size: 2.5rem;
+            font-weight: 700;
+            transition: font-size 0.3s ease;
+        }
+        
+        #date {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.5rem;
+        }
+
+        /* Portal Grid */
+        #portals-grid {
+            display: grid;
+            /* Responsive Grid Logic: 
+               - Desktop: ~250px columns
+               - Mobile: allows smaller columns (~150px) to fit 2 side-by-side */
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            background: rgba(11, 14, 49, 0.9);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: #17051e;
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-40px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        /* Inputs */
+        input, textarea, select {
+            background: rgba(11, 14, 49, 0.9) !important;
+            border: 1px solid rgba(0, 200, 224, 0.4);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--gold);
+            outline: none;
+            background: #0b0e31 !important;
+        }
+
+        select option {
+            background: var(--dark-stone);
+            color: #fff;
+            padding: 10px;
+        }
+
+        ::placeholder {
+            color: rgba(0, 200, 224, 0.5);
+            opacity: 1;
+        }
+
+        .modal-content code {
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--gold);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #0b0e31; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--lava-orange), var(--gold));
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--gold), var(--flame-red));
+        }
+
+        /* Logo Animation */
+        .logo-pulse {
+            animation: logoPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Footer */
+        footer {
+            background: #0b0e31;
+            border-top: 1px solid rgba(0, 200, 224, 0.3);
+            margin-top: auto;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        footer p:first-child {
+            font-size: 14px;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hidden { display: none; }
+
+        /* Light Mode Override */
+        body.light-mode #bg-image {
+            opacity: 1 !important;
+            filter: saturate(1.15);
+        }
+        body.light-mode #bg-video {
+            opacity: 0.35;
+            z-index: 1;
+        }
+
+        /* =========================================
+           MOBILE RESPONSIVE BREAKPOINTS
+           ========================================= */
+        @media (max-width: 768px) {
+            main.content-layer {
+                padding-top: 90px; /* Less padding on mobile */
+            }
+
+            .hero-title {
+                font-size: 1.75rem; /* Smaller title */
+                margin-bottom: 0.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .profile {
+                width: 120px; /* Smaller profile picture */
+                height: 120px;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Time adjustments */
+            .time-container {
+                padding: 1rem 1.5rem;
+            }
+
+            #time {
+                font-size: 2rem;
+            }
+
+            #date {
+                font-size: 0.85rem;
+            }
+
+            /* Grid adjustments for mobile */
+            #portals-grid {
+                /* Allow 2 columns on modern phones (min 150px) */
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+                gap: 1rem;
+            }
+
+            .portal-card a {
+                padding: 1.25rem 1rem !important; /* Less padding inside cards */
+            }
+
+            .portal-card i, .portal-card img.portal-icon {
+                font-size: 2.5rem !important; /* Smaller icons */
+                height: 2.5rem !important;
+                width: 2.5rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+
+            .portal-card h3 {
+                font-size: 1rem !important;
+            }
+
+            .portal-card p {
+                font-size: 0.75rem !important;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* Limit description lines */
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            
+            .delete-btn {
+                width: 28px;
+                height: 28px;
+                top: 8px;
+                right: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+             /* Extra small devices */
+             .navbar .container > div {
+                 height: 60px;
+             }
+             
+             main.content-layer {
+                 padding-top: 80px;
+             }
+        }
+    </style>
 </head>
 <body>
-  <!-- CONTAINER UTAMA (SIMULASI HP) -->
-  <div class="app-container">
 
-      <!-- LOADING SCREENSHOT -->
-      <div class="loading-overlay" id="loadingOverlay">
-          <div class="spinner"></div>
-          <div>Memproses Kualitas 4K...</div>
-      </div>
+    <!-- Background -->
+    <div id="bg-container">
+        <video id="bg-video" class="bg-media" autoplay muted playsinline>
+            <source src="https://files.catbox.moe/gpwsaa.mp4" type="video/mp4">
+        </video>
+        <img id="bg-image" class="bg-media" src="https://i.imghippo.com/files/eJmg6984JU.jpg" alt="Hayabusa Shura Background">
+    </div>
+    <canvas id="particle-canvas"></canvas>
 
-      <div class="topbar">
-        <img src="https://i.imghippo.com/files/wC5348bFU.jpg" draggable="false" class="locked-image" alt="Top Bar" crossorigin="anonymous" />
-      </div>
-      
-      <!-- CONTENT AREA (SCROLLABLE) -->
-      <div class="list" id="chatList">
-          <!-- Chat items will be injected here -->
-      </div>
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 content-layer" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <!-- Logo -->
+                <div id="logo-container" style="display: flex; align-items: center; cursor: pointer; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
+                    <img src="https://i.imghippo.com/files/EePl9866XxI.png" alt="Hayabusa Shura Logo" class="logo-pulse" style="height: 50px; width: auto; border-radius: 50%;" draggable="false">
+                    <span class="font-cinzel gold-text" style="font-weight: 700; font-size: 1.25rem; letter-spacing: 0.05em; margin-left: 1rem;">MLBB HAYABUSA</span>
+                </div>
 
-      <!-- FAB -->
-      <div class="fab" title="Buat Chat Baru" onclick="openEditor()">
-        <img id="fabIcon" src="https://i.imghippo.com/files/toKE4058Rk.png" draggable="false" alt="New Chat" style="transform: translate(15px, 10px); width: 100%;" crossorigin="anonymous">
-      </div>
+                <!-- Desktop Nav -->
+                <div style="display: none;" class="desktop-nav">
+                    <div class="nav-item relative group" style="display: inline-block; position: relative;">
+                        <button class="flame-text" style="display: flex; align-items: center; gap: 0.5rem; background: none; border: none; cursor: pointer; font-family: 'Cinzel', serif; font-size: 0.875rem; text-transform: uppercase;">
+                            <i class="fas fa-moon"></i>
+                            <span>Forge</span>
+                            <i class="fas fa-chevron-down" style="font-size: 0.75rem; transition: transform 0.3s;"></i>
+                        </button>
+                        <div class="dropdown" style="position: absolute; right: 0; width: 320px; padding: 1.5rem; margin-top: 0.75rem;">
+                            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Craft Portal</h3>
+                            <button onclick="showAddLinkModal()" class="btn-secondary" style="width: 100%; font-size: 0.875rem; margin-bottom: 1rem;">
+                                <i class="fas fa-plus" style="margin-right: 0.5rem;"></i>Tambahkan Portal
+                            </button>
 
-      <div class="bottom">
-        <img src="https://i.imghippo.com/files/JV5005ev.jpg" draggable="false" class="locked-image" alt="Bottom Bar" crossorigin="anonymous" />
-      </div>
+                            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Data Vault</h3>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
+                                <button onclick="importData()" class="btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.5rem 1rem;"><i class="fas fa-upload" style="margin-right: 0.25rem;"></i>Import</button>
+                                <button onclick="backupData()" class="btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.5rem 1rem;"><i class="fas fa-download" style="margin-right: 0.25rem;"></i>Backup</button>
+                            </div>
 
-      <!-- EDITOR MODAL -->
-      <div class="modal-overlay" id="editorModal">
-        <div class="modal-container">
-          <div class="modal-header">
-            <div class="modal-title" id="modalTitle">Edit Chat</div>
-            <div class="header-actions">
-                <button class="btn-header-icon" title="Ganti Tema" onclick="toggleTheme()">
-                    <svg id="themeIcon" viewBox="0 0 24 24">
-                        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
-                    </svg>
-                </button>
+                            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Purge</h3>
+                            <button onclick="showConfirmationModal('Unleash the shadows?', resetAllSettings)" class="btn-secondary" style="width: 100%; font-size: 0.875rem;">
+                                <i class="fas fa-skull-crossbones" style="margin-right: 0.5rem;"></i>Reset Semua
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-                <button class="btn-header-icon" title="Download Screenshot" onclick="downloadFromModal()">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19,9h-4V3H9v6H5l7,7L19,9z M5,18v2h14v-2H5z"/>
-                    </svg>
-                </button>
-                
-                <button class="btn-close-icon" onclick="closeEditor()">&times;</button>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label">Nama Kontak</label>
-            <input type="text" class="form-input" id="inpName" placeholder="Nama...">
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label">Pesan Terakhir</label>
-            <input type="text" class="form-input" id="inpMsg" placeholder="Pesan...">
-          </div>
-
-          <div class="row">
-            <div class="form-group" style="flex:1">
-              <label class="form-label">Waktu</label>
-              <input type="text" class="form-input" id="inpTime" placeholder="12:00">
-            </div>
-            <div class="form-group" style="width:80px">
-              <label class="form-label">Unread</label>
-              <input type="number" class="form-input" id="inpUnread" value="0">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Foto Profil</label>
-            <div class="avatar-selector">
-                <div class="avatar-preview-small" id="avatarPrev">A</div>
-                <div style="flex:1">
-                    <input type="text" class="form-input" id="inpAvatarText" placeholder="Ketik Inisial" style="margin-bottom:6px; font-size:13px; padding:8px;">
-                    <label class="file-btn">
-                        + Upload Foto
-                        <input type="file" id="inpAvatarFile" accept="image/*" style="display:none">
-                    </label>
+                <!-- Mobile Menu Button -->
+                <div class="mobile-nav-toggle">
+                    <button id="mobile-menu-button" class="flame-text" style="background: none; border: none; font-size: 2rem; cursor: pointer; outline: none;">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
             </div>
-            <input type="hidden" id="currentImageBase64">
-          </div>
-
-          <div class="modal-actions">
-            <button class="btn btn-danger" id="btnDelete" onclick="tryDelete()">Hapus</button>
-            <button class="btn btn-primary" onclick="saveChat()">Simpan</button>
-          </div>
         </div>
-      </div>
+    </nav>
 
-      <!-- CUSTOM CONFIRM MODAL -->
-      <div class="confirm-overlay" id="confirmModal">
-        <div class="confirm-box">
-          <div class="confirm-text" id="confirmText">Konfirmasi?</div>
-          <div class="confirm-buttons">
-            <button class="c-btn c-btn-cancel" onclick="closeConfirm()">Batal</button>
-            <button class="c-btn c-btn-ok" id="confirmOkBtn">Ya</button>
-          </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 z-50 hidden" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 55;" onclick="closeMobileMenu()"></div>
+    <div id="mobile-menu" style="padding: 2rem 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid rgba(0, 200, 224, 0.3);">
+            <span class="font-cinzel" style="font-size: 1.125rem; color: var(--gold);">CRAFT</span>
+            <button onclick="closeMobileMenu()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gold);">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-      </div>
 
-      <!-- TOAST NOTIFICATION -->
-      <div class="toast" id="toast">Notifikasi</div>
+        <div style="flex-grow: 1; overflow-y: auto;">
+            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-bottom: 0.75rem; margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Portal</h3>
+            <button onclick="showAddLinkModal(); closeMobileMenu();" class="btn-secondary" style="width: 100%; font-size: 0.875rem; margin-bottom: 1rem;">
+                <i class="fas fa-plus" style="margin-right: 0.5rem;"></i>Tambah Portal
+            </button>
 
-  </div> <!-- END APP CONTAINER -->
+            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-top: 1rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Data</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 1rem;">
+                <button onclick="importData(); closeMobileMenu();" class="btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.5rem 1rem;"><i class="fas fa-upload" style="margin-right: 0.25rem;"></i>Import</button>
+                <button onclick="backupData(); closeMobileMenu();" class="btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.5rem 1rem;"><i class="fas fa-download" style="margin-right: 0.25rem;"></i>Backup</button>
+            </div>
 
-  <script>
-    const _0x24f80c=_0x10e1;(function(_0x5e6d83,_0x3b1bd5){const _0x1ba5a9=_0x10e1,_0x60d477=_0x5e6d83();while(!![]){try{const _0x3d5bef=parseInt(_0x1ba5a9(0x151))/0x1*(-parseInt(_0x1ba5a9(0x19d))/0x2)+-parseInt(_0x1ba5a9(0x194))/0x3*(parseInt(_0x1ba5a9(0x1b1))/0x4)+parseInt(_0x1ba5a9(0x1c4))/0x5+parseInt(_0x1ba5a9(0x15b))/0x6*(-parseInt(_0x1ba5a9(0x1a7))/0x7)+parseInt(_0x1ba5a9(0x1a4))/0x8*(-parseInt(_0x1ba5a9(0x1be))/0x9)+-parseInt(_0x1ba5a9(0x1c8))/0xa+-parseInt(_0x1ba5a9(0x1a5))/0xb*(-parseInt(_0x1ba5a9(0x167))/0xc);if(_0x3d5bef===_0x3b1bd5)break;else _0x60d477['push'](_0x60d477['shift']());}catch(_0x5c42d5){_0x60d477['push'](_0x60d477['shift']());}}}(_0x34b3,0xae8d4));const avatarColors=['#00A884',_0x24f80c(0x1b9),_0x24f80c(0x175),_0x24f80c(0x18a),_0x24f80c(0x18f),_0x24f80c(0x169),_0x24f80c(0x17a),'#4CAF50',_0x24f80c(0x1a6),_0x24f80c(0x1e4),_0x24f80c(0x1ba)];function getRandomColor(){const _0x2ce110=_0x24f80c,_0xa2e3df=(function(){let _0x3a9bc1=!![];return function(_0x47f12a,_0x327ee4){const _0x277693=_0x3a9bc1?function(){const _0x24cb8b=_0x10e1;if(_0x327ee4){const _0x1ab0a9=_0x327ee4[_0x24cb8b(0x176)](_0x47f12a,arguments);return _0x327ee4=null,_0x1ab0a9;}}:function(){};return _0x3a9bc1=![],_0x277693;};}()),_0x5bdcc8=_0xa2e3df(this,function(){const _0x29ae56=_0x10e1;return _0x5bdcc8[_0x29ae56(0x1b0)]()[_0x29ae56(0x156)](_0x29ae56(0x1b8))['toString']()['constructor'](_0x5bdcc8)[_0x29ae56(0x156)](_0x29ae56(0x1b8));});_0x5bdcc8();const _0x48590a=(function(){let _0x1220b1=!![];return function(_0x597b06,_0x5961fc){const _0x359fc8=_0x1220b1?function(){const _0x172916=_0x10e1;if(_0x5961fc){const _0x23b77f=_0x5961fc[_0x172916(0x176)](_0x597b06,arguments);return _0x5961fc=null,_0x23b77f;}}:function(){};return _0x1220b1=![],_0x359fc8;};}()),_0x1e329c=_0x48590a(this,function(){const _0x168793=_0x10e1;let _0x4cf1fb;try{const _0x3a338f=Function('return\x20(function()\x20'+_0x168793(0x180)+');');_0x4cf1fb=_0x3a338f();}catch(_0x1ac3eb){_0x4cf1fb=window;}const _0x547259=_0x4cf1fb[_0x168793(0x1af)]=_0x4cf1fb[_0x168793(0x1af)]||{},_0x3128d8=['log',_0x168793(0x183),_0x168793(0x15e),_0x168793(0x19b),_0x168793(0x142),_0x168793(0x160),_0x168793(0x1c1)];for(let _0x816c4d=0x0;_0x816c4d<_0x3128d8[_0x168793(0x152)];_0x816c4d++){const _0x3f22e7=_0x48590a[_0x168793(0x1a2)][_0x168793(0x149)][_0x168793(0x17d)](_0x48590a),_0x97407a=_0x3128d8[_0x816c4d],_0x54b3e5=_0x547259[_0x97407a]||_0x3f22e7;_0x3f22e7[_0x168793(0x1ca)]=_0x48590a[_0x168793(0x17d)](_0x48590a),_0x3f22e7['toString']=_0x54b3e5[_0x168793(0x1b0)][_0x168793(0x17d)](_0x54b3e5),_0x547259[_0x97407a]=_0x3f22e7;}});return _0x1e329c(),avatarColors[Math[_0x2ce110(0x16c)](Math['random']()*avatarColors[_0x2ce110(0x152)])];}function _0x34b3(){const _0x73e85=['<path\x20d=\x22M12\x203c-4.97\x200-9\x204.03-9\x209s4.03\x209\x209\x209\x209-4.03\x209-9c0-.46-.04-.92-.1-1.36-.98\x201.37-2.58\x202.26-4.4\x202.26-2.98\x200-5.4-2.42-5.4-5.4\x200-1.81.89-3.42\x202.26-4.4-.44-.06-.9-.1-1.36-.1z\x22/>','toast','1SsvtvF','length','substring','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','catch','search','innerHTML','Chat\x20dihapus','forEach','show','95226pDWbtF','appendChild','inpMsg','info','color','table','inpUnread','<div\x20class=\x22badge\x22>','flex','block','padStart','result','300GQiKJi','onclick','#9C27B0','isImage','input','floor','naturalHeight','setAttribute','Dinda','splice','files','getMinutes','getElementById','Inget\x20mimpi-mimpi\x20kamu\x20Fazry,\x20gas\x20terus!','#FF9800','apply','Fani','btnDelete','getContext','#00BCD4','open','innerText','bind','inpAvatarFile','naturalWidth','{}.constructor(\x22return\x20this\x22)(\x20)','inpName','unread','warn','Apapun\x20rintangannya,\x20Fazry\x20pasti\x20bisa\x20lewatin','18.30','avatarPrev','now','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22avatar\x22\x20style=\x22background-color:\x20','name','#3F51B5','display','classList','https://i.imghippo.com/files/NLt8463pM.png','chatList','#2196F3','Chat\x20Baru','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','<path\x20d=\x22M6.76\x204.84l-1.8-1.79-1.41\x201.41\x201.79\x201.79\x201.42-1.41zM4\x2010.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45\x203.91l-1.41-1.41-1.79\x201.79\x201.41\x201.41\x201.79-1.79zm-3.21\x2013.7l1.79\x201.79\x201.41-1.41-1.79-1.79-1.41\x201.41zM20\x2010.5v2h3v-2h-3zm-8-5c-3.31\x200-6\x202.69-6\x206s2.69\x206\x206\x206\x206-2.69\x206-6-2.69-6-6-6zm-1\x2016.95h2V19.5h-2v2.95zm-7.45-3.91l1.41\x201.41\x201.79-1.8-1.41-1.41-1.79\x201.8z\x22/>','charAt','18ivsZOO','Lelah\x20boleh,\x20nyerah\x20jangan\x20ya\x20Fazry','Citra','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22meta\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22top-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22name\x22>','Edit\x20Chat','20.45','Jessica','error','height','33216TuHaRH','toUpperCase','Intan','data-theme','add','constructor','Semoga\x20harimu\x20menyenangkan\x20ya\x20Fazry','222032HXxOFi','1512577tEQFYz','#795548','210hjeYtF','</div>','#04070a','time','inpTime','14.10','remove','createElement','console','toString','303064entsCJ','filter','editorModal','Vania','backgroundColor','change','Jangan\x20nyerah\x20Fazry,\x20kamu\x20pasti\x20sukses!','(((.+)+)+)+$','#FF5252','#E91E63','querySelectorAll','20.35','item','414YAcueG','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22bot-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22preview\x22>','Amelia','trace','drawImage','Simpan\x20tampilan\x20dengan\x20kualitas\x204K?','2498865tVXcor','none','17.45','confirmOkBtn','9984660STlEDm','Fokus\x20sama\x20tujuan\x20kamu\x20Fazry,\x20semangat!','__proto__','body','Tiara\x20Cantik\x20❤️','Erika','querySelector','download','value','Kemarin','Doa\x20terbaik\x20selalu\x20buat\x20Fazry\x20disana','then','addEventListener','Fazry\x20jangan\x20lupa\x20istirahat\x20dan\x20makan\x20ya','href','\x22\x20alt=\x22img\x22>','style','click','Gagal\x20membuat\x20screenshot','Tanpa\x20Nama','msg','invert(1)\x20hue-rotate(180deg)','.locked-image','target','getHours','16.20','20.25','Semangat\x20terus\x20ya\x20ayang\x20Fazry\x20kerjanya!','#607D8B','\x22\x20style=\x22width:100%;height:100%;object-fit:cover\x22>','width','includes','Fazry\x20hebat,\x20aku\x20bangga\x20banget\x20sama\x20kamu','<img\x20src=\x22','.app-container','13.00','onload','Chat\x20disimpan','overflow','toDataURL','exception','loadingOverlay','.list','avatar','className','canvas','modalTitle','prototype','Konfirmasi?','themeIcon','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22time\x22>','Hapus','src'];_0x34b3=function(){return _0x73e85;};return _0x34b3();}let chats=[{'name':_0x24f80c(0x1cc),'msg':_0x24f80c(0x1e3),'time':_0x24f80c(0x199),'unread':0x2,'avatar':'T','isImage':![],'color':getRandomColor()},{'name':_0x24f80c(0x1b4),'msg':_0x24f80c(0x1b7),'time':'20.41','unread':0x5,'avatar':'V','isImage':![],'color':getRandomColor()},{'name':_0x24f80c(0x1c0),'msg':_0x24f80c(0x174),'time':_0x24f80c(0x1bc),'unread':0x1,'avatar':'A','isImage':![],'color':getRandomColor()},{'name':'Bella','msg':_0x24f80c(0x1e8),'time':_0x24f80c(0x1e2),'unread':0x0,'avatar':'B','isImage':![],'color':getRandomColor()},{'name':_0x24f80c(0x196),'msg':_0x24f80c(0x195),'time':'19.15','unread':0x3,'avatar':'C','isImage':![],'color':getRandomColor()},{'name':_0x24f80c(0x16f),'msg':_0x24f80c(0x1c9),'time':_0x24f80c(0x185),'unread':0x0,'avatar':'D','isImage':![],'color':getRandomColor()},{'name':_0x24f80c(0x1cd),'msg':_0x24f80c(0x1a3),'time':_0x24f80c(0x1c6),'unread':0x1,'avatar':'E','isImage':![],'color':getRandomColor()},{'name':_0x24f80c(0x177),'msg':_0x24f80c(0x1d5),'time':_0x24f80c(0x1e1),'unread':0x0,'avatar':'F','isImage':![],'color':getRandomColor()},{'name':'Gisel','msg':'Masa\x20depan\x20cerah\x20menanti\x20Fazry,\x20ayo\x20bangkit!','time':_0x24f80c(0x1ac),'unread':0x0,'avatar':'G','isImage':![],'color':getRandomColor()},{'name':'Hani','msg':_0x24f80c(0x184),'time':_0x24f80c(0x1eb),'unread':0x1,'avatar':'H','isImage':![],'color':getRandomColor()},{'name':_0x24f80c(0x19f),'msg':'Percaya\x20sama\x20prosesnya\x20ya\x20Fazry','time':_0x24f80c(0x1d1),'unread':0x0,'avatar':'I','isImage':![],'color':getRandomColor()},{'name':_0x24f80c(0x19a),'msg':_0x24f80c(0x1d2),'time':_0x24f80c(0x1d1),'unread':0x0,'avatar':'J','isImage':![],'color':getRandomColor()}],editIdx=-0x1,tempDraftColor='',isLightMode=![];const listEl=document[_0x24f80c(0x173)](_0x24f80c(0x18e)),modal=document[_0x24f80c(0x173)](_0x24f80c(0x1b3)),modalTitle=document[_0x24f80c(0x173)](_0x24f80c(0x148)),inpName=document[_0x24f80c(0x173)](_0x24f80c(0x181)),inpMsg=document[_0x24f80c(0x173)](_0x24f80c(0x15d)),inpTime=document[_0x24f80c(0x173)](_0x24f80c(0x1ab)),inpUnread=document[_0x24f80c(0x173)](_0x24f80c(0x161)),inpAvatarText=document['getElementById']('inpAvatarText'),inpAvatarFile=document[_0x24f80c(0x173)](_0x24f80c(0x17e)),avatarPrev=document[_0x24f80c(0x173)](_0x24f80c(0x186)),hiddenBase64=document[_0x24f80c(0x173)]('currentImageBase64'),btnDelete=document[_0x24f80c(0x173)](_0x24f80c(0x178)),confirmModal=document[_0x24f80c(0x173)]('confirmModal'),confirmTextEl=document[_0x24f80c(0x173)]('confirmText'),confirmOkBtn=document[_0x24f80c(0x173)](_0x24f80c(0x1c7)),toastEl=document[_0x24f80c(0x173)](_0x24f80c(0x150)),themeIcon=document[_0x24f80c(0x173)](_0x24f80c(0x14b)),fabIcon=document[_0x24f80c(0x173)]('fabIcon');function toggleTheme(){const _0x592e4d=_0x24f80c;isLightMode=!isLightMode,isLightMode?(document[_0x592e4d(0x1cb)][_0x592e4d(0x16e)](_0x592e4d(0x1a0),'light'),themeIcon[_0x592e4d(0x157)]=_0x592e4d(0x192),fabIcon[_0x592e4d(0x14e)]=_0x592e4d(0x18d)):(document[_0x592e4d(0x1cb)]['removeAttribute'](_0x592e4d(0x1a0)),themeIcon[_0x592e4d(0x157)]=_0x592e4d(0x14f),fabIcon[_0x592e4d(0x14e)]='https://i.imghippo.com/files/toKE4058Rk.png');}function render(){const _0x3938e5=_0x24f80c;listEl[_0x3938e5(0x157)]='',chats['forEach']((_0x652a46,_0x34219d)=>{const _0x4ddf4c=_0x3938e5,_0xfaa770=document[_0x4ddf4c(0x1ae)]('div');_0xfaa770[_0x4ddf4c(0x146)]=_0x4ddf4c(0x1bd),_0xfaa770[_0x4ddf4c(0x168)]=()=>openEditor(_0x34219d);let _0x5ed0b4=_0x652a46[_0x4ddf4c(0x145)];if(!_0x652a46[_0x4ddf4c(0x15f)])_0x652a46[_0x4ddf4c(0x15f)]=getRandomColor();_0x652a46[_0x4ddf4c(0x16a)]&&(_0x5ed0b4=_0x4ddf4c(0x1e9)+_0x652a46['avatar']+_0x4ddf4c(0x1d7)),_0xfaa770[_0x4ddf4c(0x157)]=_0x4ddf4c(0x188)+_0x652a46['color']+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x5ed0b4+_0x4ddf4c(0x197)+_0x652a46[_0x4ddf4c(0x189)]+_0x4ddf4c(0x14c)+_0x652a46[_0x4ddf4c(0x1aa)]+_0x4ddf4c(0x1bf)+(_0x652a46[_0x4ddf4c(0x1dc)]||'')+_0x4ddf4c(0x191)+(_0x652a46[_0x4ddf4c(0x182)]>0x0?_0x4ddf4c(0x162)+_0x652a46[_0x4ddf4c(0x182)]+_0x4ddf4c(0x1a8):'')+_0x4ddf4c(0x154),listEl[_0x4ddf4c(0x15c)](_0xfaa770);});}function openEditor(_0x3e671c=-0x1){const _0x144885=_0x24f80c;editIdx=_0x3e671c,inpAvatarFile[_0x144885(0x1d0)]='';if(_0x3e671c===-0x1){modalTitle[_0x144885(0x17c)]=_0x144885(0x190),inpName[_0x144885(0x1d0)]='',inpMsg[_0x144885(0x1d0)]='';const _0x35e124=new Date(),_0x22281f=String(_0x35e124[_0x144885(0x1e0)]())[_0x144885(0x165)](0x2,'0'),_0xb83016=String(_0x35e124[_0x144885(0x172)]())[_0x144885(0x165)](0x2,'0');inpTime[_0x144885(0x1d0)]=_0x22281f+':'+_0xb83016,inpUnread[_0x144885(0x1d0)]=0x1,inpAvatarText[_0x144885(0x1d0)]='',hiddenBase64[_0x144885(0x1d0)]='',btnDelete['style'][_0x144885(0x18b)]=_0x144885(0x1c5),tempDraftColor=getRandomColor(),updateAvatarPreview('?',![],tempDraftColor);}else{const _0x16ae0c=chats[_0x3e671c];modalTitle[_0x144885(0x17c)]=_0x144885(0x198),inpName[_0x144885(0x1d0)]=_0x16ae0c[_0x144885(0x189)],inpMsg[_0x144885(0x1d0)]=_0x16ae0c[_0x144885(0x1dc)],inpTime[_0x144885(0x1d0)]=_0x16ae0c[_0x144885(0x1aa)],inpUnread['value']=_0x16ae0c[_0x144885(0x182)],btnDelete[_0x144885(0x1d8)][_0x144885(0x18b)]=_0x144885(0x164),tempDraftColor=_0x16ae0c[_0x144885(0x15f)],_0x16ae0c[_0x144885(0x16a)]?(hiddenBase64[_0x144885(0x1d0)]=_0x16ae0c[_0x144885(0x145)],inpAvatarText[_0x144885(0x1d0)]='',updateAvatarPreview(_0x16ae0c[_0x144885(0x145)],!![],tempDraftColor)):(hiddenBase64[_0x144885(0x1d0)]='',inpAvatarText[_0x144885(0x1d0)]=_0x16ae0c[_0x144885(0x145)],updateAvatarPreview(_0x16ae0c['avatar'],![],tempDraftColor));}modal[_0x144885(0x18c)][_0x144885(0x1a1)](_0x144885(0x17b));}function closeEditor(){const _0x56d9dd=_0x24f80c;modal['classList'][_0x56d9dd(0x1ad)](_0x56d9dd(0x17b));}function _0x10e1(_0x432a0e,_0x4545ec){const _0x3131cd=_0x34b3();return _0x10e1=function(_0x5b09bf,_0x50168d){_0x5b09bf=_0x5b09bf-0x142;let _0x2d5122=_0x3131cd[_0x5b09bf];return _0x2d5122;},_0x10e1(_0x432a0e,_0x4545ec);}inpAvatarText[_0x24f80c(0x1d4)](_0x24f80c(0x16b),_0x571319=>{const _0x5a2b34=_0x24f80c;_0x571319['target']['value']&&(hiddenBase64[_0x5a2b34(0x1d0)]='',updateAvatarPreview(_0x571319[_0x5a2b34(0x1df)][_0x5a2b34(0x1d0)],![],tempDraftColor));}),inpAvatarFile[_0x24f80c(0x1d4)](_0x24f80c(0x1b6),function(){const _0x4bc2b7=_0x24f80c;if(this['files']&&this[_0x4bc2b7(0x171)][0x0]){const _0x3494b9=new FileReader();_0x3494b9[_0x4bc2b7(0x1ec)]=function(_0x5ed998){const _0x41bc6a=_0x4bc2b7;hiddenBase64['value']=_0x5ed998[_0x41bc6a(0x1df)]['result'],inpAvatarText[_0x41bc6a(0x1d0)]='',updateAvatarPreview(_0x5ed998[_0x41bc6a(0x1df)][_0x41bc6a(0x166)],!![],tempDraftColor);},_0x3494b9['readAsDataURL'](this[_0x4bc2b7(0x171)][0x0]);}});function updateAvatarPreview(_0x27ec09,_0x49c3ba,_0x5098dd){const _0x5f3294=_0x24f80c;avatarPrev['style'][_0x5f3294(0x1b5)]=_0x5098dd,_0x49c3ba?avatarPrev[_0x5f3294(0x157)]=_0x5f3294(0x1e9)+_0x27ec09+_0x5f3294(0x1e5):avatarPrev[_0x5f3294(0x157)]=_0x27ec09[_0x5f3294(0x153)](0x0,0x2)['toUpperCase']();}function saveChat(){const _0x318d78=_0x24f80c,_0x49b3f8=inpName['value']||_0x318d78(0x1db);let _0x465a4d='A',_0x1943de=![];hiddenBase64[_0x318d78(0x1d0)]?(_0x465a4d=hiddenBase64[_0x318d78(0x1d0)],_0x1943de=!![]):_0x465a4d=inpAvatarText[_0x318d78(0x1d0)][_0x318d78(0x153)](0x0,0x2)[_0x318d78(0x19e)]()||_0x49b3f8[_0x318d78(0x193)](0x0)[_0x318d78(0x19e)]();const _0x462b94={'name':_0x49b3f8,'msg':inpMsg[_0x318d78(0x1d0)],'time':inpTime[_0x318d78(0x1d0)],'unread':parseInt(inpUnread['value'])||0x0,'avatar':_0x465a4d,'isImage':_0x1943de,'color':tempDraftColor};editIdx===-0x1?chats['unshift'](_0x462b94):chats[editIdx]=_0x462b94,render(),closeEditor(),showToast(_0x318d78(0x1ed));}function tryDelete(){closeEditor(),setTimeout(()=>{showConfirm(()=>{const _0x4b8f52=_0x10e1;editIdx>-0x1&&(chats[_0x4b8f52(0x170)](editIdx,0x1),render(),showToast(_0x4b8f52(0x158)));},'Hapus\x20chat\x20ini?');},0xc8);}let onConfirmAction=null;function showConfirm(_0x563afb,_0x58566d){const _0x44ef3e=_0x24f80c;onConfirmAction=_0x563afb,confirmTextEl[_0x44ef3e(0x17c)]=_0x58566d||_0x44ef3e(0x14a),confirmOkBtn[_0x44ef3e(0x17c)]=_0x58566d&&_0x58566d[_0x44ef3e(0x1e7)](_0x44ef3e(0x14d))?_0x44ef3e(0x14d):'Ya',confirmModal[_0x44ef3e(0x18c)][_0x44ef3e(0x1a1)]('show');}function closeConfirm(){const _0x29d6d0=_0x24f80c;confirmModal[_0x29d6d0(0x18c)][_0x29d6d0(0x1ad)]('show'),onConfirmAction=null;}confirmOkBtn[_0x24f80c(0x168)]=()=>{if(onConfirmAction)onConfirmAction();closeConfirm();};let toastTimeout;function showToast(_0xac8340){const _0x3863d0=_0x24f80c;toastEl[_0x3863d0(0x17c)]=_0xac8340,toastEl[_0x3863d0(0x18c)]['add'](_0x3863d0(0x15a)),clearTimeout(toastTimeout),toastTimeout=setTimeout(()=>{const _0x5c0007=_0x3863d0;toastEl['classList'][_0x5c0007(0x1ad)]('show');},0xbb8);}function downloadFromModal(){closeEditor(),setTimeout(()=>{const _0x521959=_0x10e1;showConfirm(processScreenshot,_0x521959(0x1c3));},0x15e);}function processScreenshot(){const _0x2405c1=_0x24f80c,_0x58d245=document[_0x2405c1(0x173)](_0x2405c1(0x143));_0x58d245[_0x2405c1(0x18c)][_0x2405c1(0x1a1)]('show');const _0x14051e=document['querySelector']('.fab');_0x14051e[_0x2405c1(0x1d8)]['display']='none';const _0x388de3=document[_0x2405c1(0x1ce)](_0x2405c1(0x144)),_0xb4767e=document['querySelector'](_0x2405c1(0x1ea));setTimeout(()=>{const _0x15baa4=_0x2405c1;let _0xcd8811=isLightMode?'#ffffff':_0x15baa4(0x1a9);const _0x4e5232=0x5;html2canvas(_0xb4767e,{'scale':_0x4e5232,'useCORS':!![],'allowTaint':!![],'backgroundColor':_0xcd8811,'logging':![],'ignoreElements':_0x223074=>{const _0x3fa0a5=_0x15baa4;return _0x223074['id']===_0x3fa0a5(0x143);},'onclone':_0x4e4af2=>{const _0x521c42=_0x15baa4;if(isLightMode){const _0x3125f2=_0x4e4af2[_0x521c42(0x1bb)](_0x521c42(0x1de));_0x3125f2[_0x521c42(0x159)](_0x4b103e=>{const _0x395038=_0x521c42,_0x25ee48=document[_0x395038(0x1ae)](_0x395038(0x147));_0x25ee48['width']=_0x4b103e[_0x395038(0x17f)]||_0x4b103e[_0x395038(0x1e6)],_0x25ee48[_0x395038(0x19c)]=_0x4b103e[_0x395038(0x16d)]||_0x4b103e[_0x395038(0x19c)];const _0x53c4ec=_0x25ee48[_0x395038(0x179)]('2d');_0x53c4ec['filter']=_0x395038(0x1dd),_0x53c4ec[_0x395038(0x1c2)](_0x4b103e,0x0,0x0,_0x25ee48[_0x395038(0x1e6)],_0x25ee48[_0x395038(0x19c)]),_0x4b103e['src']=_0x25ee48[_0x395038(0x1ef)](),_0x4b103e['style'][_0x395038(0x1b2)]=_0x395038(0x1c5);});}const _0x32318a=_0x4e4af2['getElementById'](_0x521c42(0x18e));_0x32318a&&(_0x32318a[_0x521c42(0x1d8)][_0x521c42(0x1ee)]='visible');}})[_0x15baa4(0x1d3)](_0x4f632f=>{const _0x1900c7=_0x15baa4,_0x23ce8a=document[_0x1900c7(0x1ae)]('a');_0x23ce8a[_0x1900c7(0x1cf)]='WA-Mock-Scroll-'+Date[_0x1900c7(0x187)]()+'.png',_0x23ce8a[_0x1900c7(0x1d6)]=_0x4f632f['toDataURL']('image/png',0x1),_0x23ce8a[_0x1900c7(0x1d9)](),_0x14051e[_0x1900c7(0x1d8)][_0x1900c7(0x18b)]='flex',_0x58d245['classList'][_0x1900c7(0x1ad)](_0x1900c7(0x15a)),showToast('Screenshot\x204K\x20berhasil\x20disimpan!');})[_0x15baa4(0x155)](_0x5f2b06=>{const _0x253439=_0x15baa4;console[_0x253439(0x19b)](_0x5f2b06),_0x14051e['style'][_0x253439(0x18b)]=_0x253439(0x163),_0x58d245[_0x253439(0x18c)][_0x253439(0x1ad)](_0x253439(0x15a)),showToast(_0x253439(0x1da));});},0x320);}render();
-  </script>
+            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-top: 1rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">System</h3>
+            <button onclick="showConfirmationModal('Unleash reset?', resetAllSettings); closeMobileMenu();" class="btn-secondary" style="width: 100%; font-size: 0.875rem; margin-bottom: 1rem;">
+                <i class="fas fa-skull-crossbones" style="margin-right: 0.5rem;"></i>Reset Semua
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container content-layer">
+        <header style="text-align: center; margin-bottom: 3rem;">
+            <!-- Profile -->
+            <div class="profile">
+                <video src="https://files.catbox.moe/gs4lq5.mp4" alt="Profile Video" autoplay loop muted playsinline
+                style="object-position: 50% 25%; will-change: transform;">
+                </video>
+            </div>
+
+            <!-- Hero Title -->
+            <div style="display: inline-block; margin-bottom: 1.5rem;">
+                <h1 class="font-playfair hero-title" data-text="HAYABUSA SHURA">HAYABUSA SHURA</h1>
+            </div>
+            <p class="font-cinzel flame-text hero-subtitle">MLBB Creator &amp; Web Developer</p>
+            <p style="max-width: 42rem; margin: 1.5rem auto 0; font-size: 1rem; line-height: 1.6; color: rgba(0, 200, 224, 0.8);">
+                <!-- Optionally add a subtitle or description here -->
+            </p>
+        </header>
+
+        <!-- Time Display -->
+        <div style="display: flex; justify-content: center; margin-bottom: 3rem;">
+            <div class="time-container">
+                <div id="time" class="font-cinzel gold-text">00:00:00</div>
+                <div id="date" class="font-cinzel flame-text">Loading...</div>
+            </div>
+        </div>
+
+        <!-- Portal Grid -->
+        <div id="portals-grid">
+            <!-- Portal cards rendered by JS -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="content-layer">
+        <p class="font-cinzel" style="font-size: 0.875rem; opacity: 0.85;">© 2025 Created by SHURA | All Rights Reserved</p>
+        <p class="gold-text font-cinzel" style="font-size: 0.75rem; margin-top: 0.5rem;">Forged by Uranus Support Technology</p>
+    </footer>
+
+    <!-- Add Portal Modal -->
+    <div id="add-portal-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden modal-overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: none; align-items: center; justify-content: center; z-index: 50;">
+        <div class="modal-content" style="max-width: 28rem; width: 100%; margin: 0 1.5rem; position: relative; padding: 2rem;">
+            <button onclick="document.getElementById('add-portal-modal').style.display = 'none'" style="position: absolute; top: 1rem; right: 1rem; font-size: 2rem; background: none; border: none; cursor: pointer; transition: all 0.3s;" class="flame-text">×</button>
+            
+            <h2 class="font-cinzel gold-text" style="font-size: 1.5rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Craft New Portal</h2>
+
+            <form id="portal-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div>
+                    <label for="portal-name" class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Portal Name</label>
+                    <input type="text" id="portal-name" style="width: 100%; padding: 0.75rem; border-radius: 8px; font-size: 1rem;" placeholder="Enter portal name" required>
+                </div>
+
+                <div>
+                    <label for="portal-url" class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Destination URL</label>
+                    <input type="url" id="portal-url" style="width: 100%; padding: 0.75rem; border-radius: 8px; font-size: 1rem;" placeholder="https://your-link.com" required>
+                </div>
+
+                <div>
+                    <label for="portal-icon" class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Portal Icon</label>
+                    <select id="portal-icon" style="width: 100%; padding: 0.75rem; border-radius: 8px; font-size: 1rem; appearance: none;">
+                        <option value="fas fa-mask">🎭 Mask</option>
+                        <option value="fas fa-crosshairs">🎯 Target</option>
+                        <option value="fas fa-dragon">🐉 Dragon</option>
+                        <option value="fas fa-fan">🌀 Fan</option>
+                        <option value="fas fa-star">⭐ Star</option>
+                        <option value="fas fa-heart">❤️ Heart</option>
+                        <option value="fas fa-bolt">⚡ Bolt</option>
+                        <option value="fab fa-whatsapp">💬 WhatsApp</option>
+                        <option value="fab fa-youtube">▶️ YouTube</option>
+                        <option value="fab fa-instagram">📸 Instagram</option>
+                        <option value="fab fa-tiktok">🎵 TikTok</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="portal-description" class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Description</label>
+                    <textarea id="portal-description" rows="2" style="width: 100%; padding: 0.75rem; border-radius: 8px; font-size: 1rem; resize: vertical;" placeholder="Brief description..."></textarea>
+                </div>
+
+                <div>
+                    <label class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Portal Theme</label>
+                    <div style="display: flex; justify-content: space-around; padding-top: 0.5rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: all 0.3s;">
+                            <input type="radio" name="portal-color" value="#4a0072" style="width: 1.25rem; height: 1.25rem; accent-color: var(--lava-orange);" checked>
+                            <span class="font-cinzel" style="font-weight: 700; color: var(--lava-orange);">Purple</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: all 0.3s;">
+                            <input type="radio" name="portal-color" value="#ce00a7" style="width: 1.25rem; height: 1.25rem; accent-color: var(--flame-red);">
+                            <span class="font-cinzel" style="font-weight: 700; color: var(--flame-red);">Magenta</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: all 0.3s;">
+                            <input type="radio" name="portal-color" value="#00c8e0" style="width: 1.25rem; height: 1.25rem; accent-color: var(--gold);">
+                            <span class="font-cinzel" style="font-weight: 700; color: var(--gold);">Teal</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 0.75rem; padding-top: 0.5rem;">
+                    <button type="button" onclick="document.getElementById('add-portal-modal').style.display = 'none'" class="btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-lava" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">
+                        Craft
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="fixed inset-0 flex items-center justify-center hidden modal-overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: none; align-items: center; justify-content: center; z-index: 60;">
+        <div class="modal-content" style="max-width: 28rem; width: 100%; margin: 0 1rem; position: relative; padding: 2rem; text-align: center;">
+            <h2 class="font-cinzel flame-text" style="font-size: 1.25rem; margin-bottom: 1rem; font-weight: 700;">Confirm Action</h2>
+            <p id="confirmation-message" style="margin-bottom: 1.5rem; font-size: 1.125rem; color: rgba(0, 200, 224, 0.9);">Are you sure?</p>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <button id="confirm-cancel-btn" class="btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">
+                    Cancel
+                </button>
+                <button id="confirm-ok-btn" class="btn-lava" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="import-file-input" class="hidden" style="display: none;" accept=".zip,.txt,application/json">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let isVideoFinished = false;
+
+            const bgVideo = document.getElementById('bg-video');
+            const bgImage = document.getElementById('bg-image');
+
+            if (bgVideo && bgImage) {
+                const handleVideoEnd = () => {
+                    bgVideo.style.opacity = '0';
+                    if (!document.body.classList.contains('light-mode')) {
+                        bgImage.style.opacity = '0.45'; 
+                    }
+                    isVideoFinished = true;
+                };
+
+                const handleVideoError = (e) => {
+                    console.error("Video background failed:", e);
+                    handleVideoEnd();
+                };
+                
+                bgVideo.addEventListener('ended', handleVideoEnd);
+                bgVideo.addEventListener('error', handleVideoError);
+
+                const playPromise = bgVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.warn("Autoplay blocked:", error);
+                        handleVideoEnd();
+                    });
+                }
+            }
+
+            const logoContainer = document.getElementById('logo-container');
+            const portalsGrid = document.getElementById('portals-grid');
+            const portalForm = document.getElementById('portal-form');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const timeDisplay = document.getElementById('time');
+            const dateDisplay = document.getElementById('date');
+            const importFileInput = document.getElementById('import-file-input');
+            const confirmationModal = document.getElementById('confirmation-modal');
+            const confirmationMessage = document.getElementById('confirmation-message');
+            const confirmOkBtn = document.getElementById('confirm-ok-btn');
+            const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
+
+            let portals = [];
+            let onConfirmCallback = null;
+
+            // Default portals for Hayabusa Shura theme
+            const defaultPortals = [
+                { name: 'BY ONE SEKARANG', url: 'https://website-induk.vercel.app/', icon: 'fas fa-trophy', color: '#ffcc00', description: 'Hadapi aku sekarang. Buktikan siapa yang pantas menjadi Raja dan mendapatkan hadiah.' },
+                { name: 'TESTIMONI BY ONE', url: 'https://testimoni-dun.vercel.app/', icon: 'fas fa-star', color: '#ff2a6d', description: 'Semua kekalahan dan penderitaan kalian saat by one lawan Master ada di sini.' },
+                { name: 'Uranus Studio', url: 'https://uranustudio.vercel.app/', icon: 'fas fa-store', color: '#d300c5', description: 'Solusi digital untuk mengubah kreativitas menjadi penghasilan.' },
+                { name: 'Uranus Space', url: 'https://uranuspace.vercel.app/', icon: 'fas fa-rocket', color: '#6C63FF', description: 'Manajemen keuangan, waktu, split bill, my diary & HTML akses kapan saja.' },
+                { name: 'Uranustify (Desktop)', url: 'https://uranustify-desktop.vercel.app/', icon: 'fas fa-desktop', color: '#00ff9d', description: 'Simpan & dengarkan musik favoritmu tanpa batas.' },
+                { name: 'Uranustify (Mobile)', url: 'https://uranustify.vercel.app/', icon: 'fas fa-mobile-alt', color: '#00ff9d', description: 'Simpan & dengarkan musik tanpa iklan.' },
+                { name: 'Uranus Crypto', url: 'https://uranus-crypto-three.vercel.app/', icon: 'fas fa-chart-line', color: '#f7931a', description: 'Strategi trading kripto cerdas dengan fokus pada profit konsisten dan risiko terukur.' },
+                { name: 'Uranus Super', url: 'https://trakteer.id/uranusfazry/shop/uranus-super-paket-lengkap-uranus-4-alat-digital-MY9SU', icon: 'fas fa-wallet', color: '#9D72FF', description: 'Paket premium berisi 4 alat Uranus Studio, Uranustify, Uranus Crypto, dan Uranus Space dengan harga paling murah.' },
+                { name: 'Uranus Supreme', url: 'https://uranusupreme.vercel.app', icon: 'fas fa-crown', color: '#FFD700', description: 'Akses website premium dengan pengalaman lebih cepat dan lebih eksklusif.' },
+                { name: 'Uranus Support', url: 'https://uranusupport.vercel.app/', icon: 'fas fa-star', color: '#FF5700', description: 'Kumpulan website induk bertema MLBB, dirancang khusus untuk kreator MLBB.' },
+                { name: 'Uranus Store', url: 'https://buylink.id/uranusfazry', icon: 'fas fa-store', color: '#4CAF50', description: 'Tempat top up termurah dan lengkap untuk pulsa, paket data, voucher game, dan kebutuhan digital lainnya.' },
+                { name: 'Uranus Shop', url: 'https://trakteer.id/uranusfazry/shop', icon: 'fas fa-gem', color: '#ffffff', description: 'Kumpulan karya premium Uranus siap pakai dengan inovasi dan kualitas terbaik.' },
+                { name: 'Uranus WIFI', url: 'https://uranusfazry-wifi-wireless.vercel.app/', icon: 'fas fa-wifi', color: '#1DA1F2', description: 'Internet wireless cepat & stabil untuk kebutuhan online Anda.' },
+                { name: 'Uranus Play', url: 'https://uranusplay.vercel.app/', icon: 'fas fa-gamepad', color: '#9147ff', description: 'Game Multiplayer terbaik No. 1 tanpa install.' },
+                { name: 'Uranus Blogger', url: 'https://uranusfazry.blogspot.com/', icon: 'fas fa-newspaper', color: '#FF5700', description: 'Artikel yang menyajikan informasi singkat, padat, dan bermanfaat.' },
+                { name: 'Uranus Studio V2', url: 'https://trakteer.id/uranusfazry/shop/uranus-studio-unilD', icon: 'fas fa-wand-sparkles', color: '#8A2BE2', description: 'Tempat kreator bikin desain brat V2, gambar 4K, anime, dan konten keren dalam satu platform.' },
+                { name: 'Brat Generator', url: 'https://bratgenerator.vercel.app/', icon: 'fas fa-child', color: '#39FF14', description: 'Ciptakan Kalimat menjadi gambar dengan mudah.' },
+                { name: 'Brat Generator V2', url: 'https://bratgenerator2.vercel.app/', icon: 'fas fa-child', color: '#FF4DFF', description: 'Ubah teks menjadi gambar secara instan.' },
+                { name: 'Uranus Loader', url: 'https://uranusloader.vercel.app/', icon: 'fas fa-cloud-download-alt', color: '#00E5FF', description: 'Download video TikTok dengan kualitas terbaik dan tanpa watermark.' },
+                { name: 'Uranus Loader V2', url: 'https://uranusloader2.vercel.app/', icon: 'fas fa-download', color: '#C29D5F', description: 'Unduh konten TikTok secara cepat dan bersih dalam satu klik.' },
+                { name: 'WhatsApp Generator', url: 'https://wagenerator.vercel.app/', icon: 'fas fa-comment-dots', color: '#25D366', description: 'Simulasi chat WhatsApp realistis dengan hasil 4K tanpa batas.' },
+                { name: 'Iphone Generator', url: 'https://iphonev4.vercel.app/', icon: 'fas fa-mobile-screen', color: '#FFFFFF', description: 'Generator iPhone Quoted bergaya putih bersih khas iPhone, tampil elegan dan minimalis.' },
+                { name: 'Iphone Generator V2', url: 'https://iphonev5.vercel.app/', icon: 'fas fa-mobile-screen', color: '#007AFF', description: 'Tampilan iPhone Quoted mode gelap dengan nuansa profesional dan eksklusif khas Apple.' },
+                { name: 'Iphone Generator V3', url: 'https://iphonev6.vercel.app/', icon: 'fas fa-mobile-screen', color: '#7D7AFF', description: 'Desain iPhone Quoted premium dengan warna ungu kebiruan khas iPhone Pro, terlihat mewah dan futuristik.' },
+                { name: 'Uranus Web & App Development', url: 'https://wa.me/6287872521809?text=Halo,%20saya%20tertarik%20dengan%20aplikasi%20atau%20website%20seperti%20Uranus%20Fazry', icon: 'fas fa-laptop-code', color: '#25D366', description: 'Dapatkan website atau aplikasi dengan harga terjangkau.' },
+                { name: 'Skyway Community', url: 'https://skyway-chi.vercel.app/', icon: 'fas fa-users', color: '#191970', description: 'Komunitas yang menjelajahi sisi gelap kehidupan.' },
+                { name: 'Contact Me', url: 'https://mail.google.com/mail/?view=cm&to=irawanfazry697@gmail.com', icon: 'fas fa-envelope', color: '#EA4335', description: 'Get in touch for collaborations or inquiries.' }
+            ];
+
+            function initPortalApp() {
+                portals = JSON.parse(localStorage.getItem('portals')) || defaultPortals;
+                renderPortals();
+                updateTime();
+                setInterval(updateTime, 1000);
+
+                logoContainer.addEventListener('click', () => {
+                    // Toggle light mode only when video is considered finished
+                    if (!isVideoFinished) {
+                        return;
+                    }
+                    document.body.classList.toggle('light-mode');
+                    if (!document.body.classList.contains('light-mode') && bgVideo.style.opacity === '0') {
+                        bgImage.style.opacity = '0.45';
+                    }
+                });
+
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.add('open');
+                    mobileMenuOverlay.classList.remove('hidden');
+                    mobileMenuOverlay.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+
+                mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+                portalForm.addEventListener('submit', handlePortalFormSubmit);
+                importFileInput.addEventListener('change', handleFileImport);
+                confirmCancelBtn.addEventListener('click', () => {
+                    confirmationModal.classList.add('hidden');
+                    confirmationModal.style.display = 'none';
+                });
+                confirmOkBtn.addEventListener('click', () => {
+                    if (typeof onConfirmCallback === 'function') {
+                        onConfirmCallback();
+                    }
+                    confirmationModal.classList.add('hidden');
+                    confirmationModal.style.display = 'none';
+                    onConfirmCallback = null;
+                });
+
+                window.addEventListener('resize', updateNavDisplay);
+                updateNavDisplay();
+            }
+
+            function updateNavDisplay() {
+                const desktopNav = document.querySelector('.desktop-nav');
+                const mobileToggle = document.querySelector('.mobile-nav-toggle');
+                if (window.innerWidth >= 768) {
+                    if (desktopNav) desktopNav.style.display = 'block';
+                    if (mobileToggle) mobileToggle.style.display = 'none';
+                } else {
+                    if (desktopNav) desktopNav.style.display = 'none';
+                    if (mobileToggle) mobileToggle.style.display = 'block';
+                }
+            }
+
+            window.closeMobileMenu = function() {
+                mobileMenu.classList.remove('open');
+                mobileMenuOverlay.classList.add('hidden');
+                mobileMenuOverlay.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+
+            window.showConfirmationModal = function(message, callback) {
+                confirmationMessage.textContent = message;
+                onConfirmCallback = callback;
+                confirmationModal.classList.remove('hidden');
+                confirmationModal.style.display = 'flex';
+            }
+
+            function renderPortals() {
+                portalsGrid.innerHTML = '';
+
+                portals.forEach((portal, index) => {
+                    const portalElement = document.createElement('div');
+                    portalElement.style.height = '100%';
+
+                    const portalColor = portal.color || '#4a0072';
+                    const cardStyle = `color: ${portalColor}; border-color: ${portalColor};`;
+                    // REMOVED: text-shadow from style
+                    const textStyle = `color: ${portalColor};`;
+                    
+                    let iconClass = portal.icon || 'fas fa-mask';
+                    if (!portal.icon || (!portal.icon.startsWith('fa') && !portal.icon.startsWith('http') && !portal.icon.startsWith('data:image'))) {
+                        iconClass = 'fas fa-mask';
+                    }
+
+                    const iconHtml = (iconClass.startsWith('data:image') || iconClass.startsWith('http'))
+                        ? `<img src="${iconClass}" class="portal-icon" style="margin: 0 auto 1rem; height: 3rem; width: 3rem; object-fit: contain;" alt="${portal.name} icon" onerror="this.style.display='none'; this.nextSibling.style.display='block';"><i class="fas fa-mask" style="font-size: 3rem; margin-bottom: 1rem; display: none; ${textStyle}"></i>`
+                        : `<i class="${iconClass}" style="font-size: 3rem; margin-bottom: 1rem; ${textStyle}"></i>`;
+
+                    const descriptionHtml = portal.description ? portal.description : '&nbsp;';
+
+                    portalElement.innerHTML = `
+                        <div class="portal-card" style="${cardStyle} height: 100%;">
+                            <a href="${portal.url}" target="_blank" style="display: block; height: 100%; padding: 1.5rem; text-align: center; position: relative; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: center; align-items: center; flex-grow: 1;">
+                                <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+                                    ${iconHtml}
+                                    <h3 class="font-cinzel" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; word-break: break-word; font-size: 1.125rem; margin-bottom: 0.5rem; ${textStyle}">${portal.name}</h3>
+                                    <p style="font-size: 0.875rem; color: rgba(0, 200, 224, 0.8); margin-top: 0.5rem; line-height: 1.4;">${descriptionHtml}</p>
+                                </div>
+                                
+                                <button onclick="event.preventDefault(); event.stopPropagation(); showConfirmationModal('Destroy portal ${portal.name}?', () => deletePortalAction(${index}))" class="delete-btn">
+                                    <i class="fas fa-times" style="font-size: 0.875rem;"></i>
+                                </button>
+                            </a>
+                        </div>
+                    `;
+
+                    portalsGrid.appendChild(portalElement);
+                });
+            }
+
+            function handlePortalFormSubmit(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('portal-name').value;
+                const url = document.getElementById('portal-url').value || "#";
+                const description = document.getElementById('portal-description').value || "";
+                const icon = document.getElementById('portal-icon').value;
+                const color = document.querySelector('input[name="portal-color"]:checked').value;
+
+                addPortalToArray(name, url, icon, color, description);
+            }
+
+            function addPortalToArray(name, url, icon, color, description) {
+                portals.push({ name, url, icon, color, description });
+                savePortals();
+                renderPortals();
+                document.getElementById('add-portal-modal').classList.add('hidden');
+                document.getElementById('add-portal-modal').style.display = 'none';
+                resetPortalForm();
+            }
+
+            window.deletePortalAction = function(index) {
+                portals.splice(index, 1);
+                savePortals();
+                renderPortals();
+            }
+
+            function resetPortalForm() {
+                portalForm.reset();
+            }
+
+            function savePortals() {
+                localStorage.setItem('portals', JSON.stringify(portals));
+            }
+
+            window.showAddLinkModal = function() {
+                document.getElementById('add-portal-modal').classList.remove('hidden');
+                document.getElementById('add-portal-modal').style.display = 'flex';
+                resetPortalForm();
+                if (mobileMenu.classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            }
+
+            function updateTime() {
+                const now = new Date();
+                timeDisplay.textContent = now.toLocaleTimeString('en-GB');
+                dateDisplay.textContent = now.toLocaleDateString('id-ID', {
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                });
+            }
+
+            window.resetAllSettings = function() {
+                localStorage.removeItem('portals');
+                location.reload();
+            }
+
+            window.backupData = async () => {
+                const dataToBackup = {
+                    portals: JSON.parse(localStorage.getItem('portals')) || defaultPortals,
+                };
+                const dataStr = JSON.stringify(dataToBackup, null, 2);
+                try {
+                    const zip = new JSZip();
+                    zip.file("uranusfazry_backup.json", dataStr);
+                    const content = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
+                    const url = URL.createObjectURL(content);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'uranusfazry_backup.zip';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                } catch (error) {
+                    console.error("Error creating ZIP:", error);
+                    alert("Backup failed.");
+                }
+            };
+
+            window.importData = () => {
+                importFileInput.click();
+            };
+
+            async function handleFileImport(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                if (file.type === "application/zip" || file.name.endsWith(".zip")) {
+                    const reader = new FileReader();
+                    reader.onload = async (e) => {
+                        try {
+                            const zip = await JSZip.loadAsync(e.target.result);
+                            const backupFile = zip.file("uranusfazry_backup.json");
+                            if (backupFile) {
+                                const jsonContent = await backupFile.async("string");
+                                await processImportedData(jsonContent);
+                            } else {
+                                alert('Invalid ZIP file.');
+                            }
+                        } catch (error) {
+                            console.error('Error reading ZIP:', error);
+                            alert('Failed to read ZIP file.');
+                        }
+                    };
+                    reader.readAsArrayBuffer(file);
+                } else if (file.type === "text/plain" || file.type === "application/json" || file.name.endsWith(".txt")) {
+                    const reader = new FileReader();
+                    reader.onload = async (e) => {
+                        await processImportedData(e.target.result);
+                    };
+                    reader.readAsText(file);
+                } else {
+                    alert("Unsupported file type.");
+                }
+                event.target.value = '';
+            }
+
+            async function processImportedData(jsonContent) {
+                try {
+                    const importedData = JSON.parse(jsonContent);
+                    if (importedData && Array.isArray(importedData.portals)) {
+                        localStorage.setItem('portals', JSON.stringify(importedData.portals));
+                        showConfirmationModal('Data imported. Page will reload.', () => {
+                            location.reload();
+                        });
+                    } else {
+                        alert('Invalid backup format.');
+                    }
+                } catch (error) {
+                    console.error('Error parsing backup:', error);
+                    alert('Failed to parse backup file.');
+                }
+            }
+
+            initPortalApp();
+        });
+    </script>
+
 </body>
 </html>
