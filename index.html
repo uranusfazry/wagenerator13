@@ -1,1064 +1,780 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UranusFazry MLBB Portal | Hayabusa Shura (No Glow)</title>
+  <meta charset="utf-8" />
+  <!-- Viewport optimized -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Uranusfazry WhatsApp Pro Creator 4K</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Load Html2Canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    :root{
+      /* --- PENGATURAN JARAK (PADDING) TERPISAH --- */
+      /* Atur jarak atas untuk Tampilan Desktop (Layar Lebar / Preview) */
+      --pad-top-desktop: 210px; 
+      
+      /* Atur jarak atas untuk Tampilan HP Asli (Layar Kecil) */
+      --pad-top-mobile: 170px;
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      /* --- DARK MODE (Default) --- */
+      --bg: #04070a; 
+      --card: #0b1216;
+      --muted: #8696a0;
+      --text-main: #e9edef;
+      --text-secondary: #8696a0;
+      --accent: #00a884; 
+      --modal-bg: #1f2c34; 
+      --input-bg: #2a3942;
+      --danger: #ef4444;
+      --badge-bg: #25d366; 
+      --badge-text: #000;
+      
+      font-family: 'Inter', system-ui, sans-serif;
+      --mobile-width: 480px; 
+    }
 
-    <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    /* --- LIGHT MODE VARIABLES --- */
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --card: #f0f2f5;
+      --muted: #667781;
+      --text-main: #111b21;
+      --text-secondary: #667781;
+      --accent: #008069;
+      --modal-bg: #ffffff;
+      --input-bg: #f0f2f5;
+      --danger: #ea0038;
+      --badge-bg: #25d366;
+      --badge-text: #fff;
+    }
 
-    <style>
-        /* Import Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap');
+    *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+    
+    /* --- LAYOUT SYSTEM UPDATE --- */
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden; /* Mencegah scroll pada body browser utama */
+        background-color: #111; /* Background Desktop Luar */
+    }
 
-        /* Color Variables re‑themed for Hayabusa Shura */
-        :root {
-            --flame-red: #ce00a7;       /* vibrant magenta */
-            --lava-orange: #4a0072;     /* deep royal purple */
-            --gold: #00c8e0;            /* cool teal accent */
-            --dark-stone: #0b0e31;      /* midnight indigo */
-            --deep-magma: #17051e;      /* dark violet */
-            --bright-gold: #ff5dd8;     /* neon pink highlight */
-        }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        /* Reset & Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+    /* Container Utama (Simulasi Layar HP) */
+    .app-container {
+        width: 100%;
+        max-width: var(--mobile-width);
+        height: 100%;
+        background: linear-gradient(180deg, var(--bg), #020305);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; /* Clip elemen yang keluar */
+        box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        transition: background 0.3s;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(180deg, var(--dark-stone) 0%, var(--deep-magma) 100%);
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+    /* Override Background untuk Light Mode */
+    [data-theme="light"] .app-container {
+        background: var(--bg);
+    }
 
-        /* Background Effects */
-        #bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-        }
+    /* --- UTILS --- */
+    .locked-image {
+      width: 100%; display: block;
+      pointer-events: none; user-select: none; -webkit-user-drag: none;
+      transition: filter 0.3s;
+    }
+    [data-theme="light"] .locked-image {
+       filter: invert(1) hue-rotate(180deg);
+    }
+    
+    /* --- HEADER & FOOTER (Absolute Positioning inside Container) --- */
+    .topbar { 
+        position: absolute; 
+        top: 0; left: 0; right: 0; 
+        z-index: 20; /* Z-index tinggi agar selalu di atas list */
+        background: var(--bg); 
+        transition: background 0.3s;
+    }
+    
+    .bottom { 
+        position: absolute; 
+        bottom: 0; left: 0; right: 0; 
+        z-index: 20;
+        background: linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.3)); 
+        pointer-events: none; 
+    }
+    .bottom img { pointer-events: none; }
 
-        .bg-media {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.3) saturate(1.5) hue-rotate(10deg);
-            transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
-        }
-
-        #bg-video {
-            opacity: 1;
-            z-index: 1;
-        }
+    /* --- CONTENT LIST (SCROLLABLE AREA) --- */
+    .list {
+        flex: 1; /* Mengisi ruang penuh */
+        overflow-y: auto; /* KUNCI: Mengaktifkan scroll vertikal */
+        overflow-x: hidden;
         
-        #bg-image {
-            opacity: 0;
-            z-index: 0;
-        }
-
-        @media (min-width: 1024px) {
-            .bg-media {
-                width: 100vh;
-                height: 100vw;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) rotate(-90deg);
-            }
-        }
-
-        /* REMOVED: Ethereal Overlay (Glow) */
+        /* MENGGUNAKAN VARIABEL DESKTOP SEBAGAI DEFAULT */
+        padding-top: var(--pad-top-desktop);
+        padding-bottom: 100px; 
         
-        /* Subtle grid overlay - Animation Removed */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:  
-                linear-gradient(rgba(255, 93, 216, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(74, 0, 114, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: 1;
-            pointer-events: none;
-        }
+        /* Smooth Scrolling untuk Mobile */
+        -webkit-overflow-scrolling: touch; 
+        
+        /* Hide Scrollbar tapi tetap bisa scroll */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE 10+ */
+    }
+    .list::-webkit-scrollbar { 
+        width: 0px;
+        background: transparent; 
+    }
 
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
+    /* --- MEDIA QUERY KHUSUS MOBILE --- */
+    /* Jika lebar layar kurang dari 480px (HP Asli), gunakan jarak mobile */
+    @media screen and (max-width: 480px) {
+        .list {
+            padding-top: var(--pad-top-mobile);
         }
+    }
+    
+    .item{
+      display:flex; align-items:center; gap:14px;
+      padding:12px 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .item:active{background:rgba(255,255,255,0.03)}
+    [data-theme="light"] .item:active{background:rgba(0,0,0,0.05)}
+    
+    .avatar{
+      width:50px;height:50px;border-radius:50%;flex:0 0 50px;overflow:hidden;
+      background:#636e72; 
+      display:flex;align-items:center;justify-content:center;
+      font-weight:600; font-size: 20px; color: #fff;
+      transition: background 0.3s ease;
+      border: none;
+    }
+    [data-theme="light"] .avatar { border: none; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-        .content-layer {
-            position: relative;
-            z-index: 10;
-        }
+    .meta{
+      flex:1; min-width:0;
+      padding-bottom: 14px;
+      display: flex; flex-direction: column; justify-content: center;
+      /* border-bottom: 1px solid rgba(134, 150, 160, 0.15); <-- INI YANG DIHAPUS */
+      border-bottom: none; 
+    }
+    /* [data-theme="light"] .meta { border-bottom: 1px solid rgba(0, 0, 0, 0.05); } <-- INI JUGA DIHAPUS/KOMENTAR */
+    
+    .top-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+    .name{font-weight:500; font-size: 17px; color: var(--text-main);}
+    .time{color:var(--muted); font-size:12px;}
+    .bot-row { display: flex; justify-content: space-between; align-items: center; }
+    
+    .preview{
+      color:var(--muted); font-size:14px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      max-width: 85%;
+    }
+    
+    .badge{
+      min-width:20px; height:20px; border-radius:10px;
+      background:var(--badge-bg); 
+      display:inline-flex; align-items:center; justify-content:center;
+      font-weight:700; color:var(--badge-text); padding:0 6px; 
+      font-size: 11px; line-height: 1;
+    }
 
-        main.content-layer {
-            flex-grow: 1;
-        }
+    /* --- FAB (NEW CHAT) --- */
+    .fab{
+      position:absolute; 
+      bottom: 125px;
+      right: 20px; 
+      width: 80px; height: 80px; 
+      background: transparent;
+      display:flex; align-items:center; justify-content:center;
+      cursor: pointer; z-index: 25;
+      transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .fab img { 
+        width: 130px; 
+        max-width: none; 
+        pointer-events: none; 
+        transition: filter 0.3s; 
+    }
+    .fab:active { transform: scale(0.92); }
 
-        /* Typography */
-        .font-cinzel { font-family: 'Cinzel', serif; }
-        .font-playfair { font-family: 'Playfair Display', serif; }
+    /* --- MODAL SYSTEM --- */
+    .modal-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex; align-items: flex-end; 
+      justify-content: center;
+      z-index: 100;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(2px);
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    
+    .modal-container {
+      background: var(--modal-bg);
+      width: 100%;
+      border-radius: 20px 20px 0 0; 
+      padding: 24px 24px 40px 24px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      color: var(--text-main);
+    }
+    [data-theme="light"] .modal-container { box-shadow: 0 -4px 20px rgba(0,0,0,0.15); }
+    
+    .modal-overlay.open .modal-container {
+      transform: translateY(0);
+    }
 
-        .flame-text {
-            color: var(--flame-red);
-        }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .modal-title { font-size: 20px; font-weight: 600; color: var(--text-main); }
+    
+    .header-actions { display: flex; align-items: center; gap: 8px; }
 
-        .gold-text {
-            color: var(--gold);
-        }
+    .btn-close-icon { background:none; border:none; color:var(--muted); font-size:28px; cursor:pointer; line-height: 1; padding: 4px; }
+    
+    .btn-header-icon {
+      background: rgba(0, 168, 132, 0.15);
+      border: none;
+      color: var(--accent);
+      border-radius: 12px;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-header-icon:active { background: rgba(0, 168, 132, 0.25); transform: scale(0.95); }
+    .btn-header-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
-        .lava-text {
-            color: var(--gold);
-        }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 13px; color: var(--accent); margin-bottom: 6px; font-weight: 500; }
+    
+    .form-input {
+      width: 100%; padding: 12px 14px;
+      background: var(--input-bg); 
+      border: 1px solid transparent;
+      border-radius: 10px; color: var(--text-main); font-size: 15px;
+      font-family: inherit; outline: none;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .form-input:focus { border-color: var(--accent); }
 
-        /* Navbar */
-        .navbar {
-            background: rgba(11, 14, 49, 0.95); /* Increased opacity slightly since blur/shadow is reduced */
-            border-bottom: 1px solid rgba(255, 93, 216, 0.3); /* Reduced border width */
-            /* REMOVED: box-shadow (glow) */
-            transition: all 0.3s ease;
-        }
+    .row { display: flex; gap: 12px; }
+    
+    /* Avatar Selector */
+    .avatar-selector {
+      display: flex; gap: 12px; align-items: center;
+      background: var(--input-bg); padding: 10px; border-radius: 12px;
+    }
+    .avatar-preview-small {
+      width: 40px; height: 40px; border-radius: 50%; background: #636e72;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+      font-weight: bold; color: #fff; flex-shrink: 0;
+    }
+    .file-btn {
+      font-size: 13px; color: var(--accent); font-weight: 600;
+      cursor: pointer; padding: 4px 8px;
+    }
 
-        .navbar .container > div {
-            height: 70px;
-            transition: height 0.3s ease;
-        }
+    /* Action Buttons */
+    .modal-actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn {
+      flex: 1; padding: 14px; border: none; border-radius: 50px;
+      font-weight: 600; font-size: 15px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: filter 0.2s;
+    }
+    .btn:active { filter: brightness(0.8); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    [data-theme="light"] .btn-primary { color: #fff; }
 
-        @media (min-width: 768px) {
-            .navbar .container > div {
-                height: 90px;
-            }
-        }
+    .btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); opacity: 0.7; }
+    .btn-danger:active { background: rgba(239,68,68,0.1); opacity: 1; }
 
-        .nav-item {
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 1rem;
-        }
+    /* --- CONFIRMATION POPUP (Custom) --- */
+    .confirm-overlay {
+      position: absolute; top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.7); z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .confirm-overlay.show { opacity: 1; pointer-events: auto; }
 
-        .nav-item:hover span, .nav-item:hover i {
-            color: var(--gold);
-            /* REMOVED: text-shadow (glow) */
-        }
+    .confirm-box {
+      background: var(--modal-bg); width: 85%; max-width: 320px;
+      border-radius: 18px; padding: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      transform: scale(0.9); transition: transform 0.2s;
+      color: var(--text-main);
+    }
+    .confirm-overlay.show .confirm-box { transform: scale(1); }
 
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 3px;
-            background: var(--gold); /* Simplified gradient to solid */
-            transition: width 0.3s ease;
-            border-radius: 2px;
-            /* REMOVED: box-shadow (glow) */
-        }
+    .confirm-text { color: var(--text-main); font-size: 16px; margin-bottom: 24px; line-height: 1.5; }
+    .confirm-buttons { display: flex; justify-content: flex-end; gap: 20px; }
+    .c-btn { background: none; border: none; font-weight: 600; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 4px;}
+    .c-btn-cancel { color: var(--accent); }
+    .c-btn-ok { color: var(--accent); } 
+    .c-btn:active { background: rgba(100,100,100,0.1); }
 
-        .nav-item:hover::after {
-            width: 100%;
-        }
+    /* --- TOAST NOTIFICATION --- */
+    .toast {
+      position: absolute; bottom: 100px; 
+      left: 50%; transform: translateX(-50%) translateY(20px);
+      background: #333; color: white; padding: 12px 24px;
+      border-radius: 50px; font-size: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 300; pointer-events: none; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    
+    /* Loading Overlay */
+    .loading-overlay {
+        position: absolute; top:0; left:0; right:0; bottom:0;
+        background: rgba(0,0,0,0.8); z-index: 999;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: #00a884; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .loading-overlay.show { opacity: 1; pointer-events: auto; }
+    .spinner {
+        width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1);
+        border-top-color: #00a884; border-radius: 50%;
+        animation: spin 1s linear infinite; margin-bottom: 15px;
+    }
+    @keyframes spin { to {transform: rotate(360deg);} }
 
-        /* Dropdown */
-        .dropdown {
-            display: none;
-            position: absolute;
-            background: #0b0e31; /* Solid color instead of heavy blur */
-            border: 1px solid var(--gold);
-            /* REMOVED: box-shadow (glow) */
-            border-radius: 12px;
-            margin-top: 12px;
-            animation: dropFadeIn 0.3s ease;
-        }
-
-        @keyframes dropFadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .group:hover .dropdown {
-            display: block;
-        }
-
-        /* Mobile Menu */
-        #mobile-menu-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(11, 14, 49, 0.9);
-            z-index: 55;
-            transition: opacity 0.3s ease;
-        }
-
-        #mobile-menu {
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 80%;
-            max-width: 320px;
-            background: #0b0e31;
-            border-left: 1px solid var(--gold);
-            z-index: 60;
-            transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            padding: 2rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #mobile-menu.open {
-            transform: translateX(0);
-        }
-
-        /* Buttons */
-        .btn-lava {
-            font-family: 'Cinzel', serif;
-            background: linear-gradient(135deg, var(--lava-orange), var(--flame-red));
-            border: 1px solid var(--gold);
-            border-radius: 8px;
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            /* REMOVED: text-shadow and box-shadow (glow) */
-        }
-
-        .btn-lava::before {
-            content: none;
-        }
-
-        .btn-lava:hover {
-            /* REMOVED: box-shadow (glow) */
-            transform: translateY(-3px);
-            border-color: var(--bright-gold);
-            background: linear-gradient(135deg, var(--flame-red), var(--lava-orange)); /* Just swap colors */
-        }
-
-        .btn-lava:active {
-            transform: translateY(0) scale(0.97);
-            transition-duration: 0.1s;
-        }
-
-        .btn-secondary {
-            font-family: 'Cinzel', serif;
-            background: rgba(0, 200, 224, 0.1);
-            border: 1px solid rgba(0, 200, 224, 0.4);
-            border-radius: 8px;
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-            color: var(--gold);
-            /* REMOVED: box-shadow */
-        }
-
-        .btn-secondary:hover {
-            background: rgba(0, 200, 224, 0.2);
-            border-color: var(--gold);
-            /* REMOVED: box-shadow */
-        }
-
-        /* Portal Cards */
-        .portal-card {
-            background: rgba(23, 5, 30, 0.8); /* Higher opacity */
-            border: 1px solid; /* Reduced width */
-            border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            /* REMOVED: box-shadow (glow) */
-        }
-
-        .portal-card:hover {
-            transform: translateY(-10px);
-            /* REMOVED: box-shadow glow on hover */
-            background: rgba(23, 5, 30, 1);
-        }
-
-        .portal-card::before {
-            content: none; 
-        }
-
-        .delete-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            color: rgba(206, 0, 167, 0.7);
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 20;
-            opacity: 0.7;
-            border: 1px solid rgba(206, 0, 167, 0.5);
-        }
-
-        .portal-card:hover .delete-btn {
-            opacity: 1;
-        }
-
-        .delete-btn:hover {
-            color: var(--flame-red);
-            background: rgba(0, 0, 0, 0.6);
-            transform: scale(1.15);
-            /* REMOVED: box-shadow */
-        }
-
-        /* Profile/Avatar */
-        .profile {
-            margin: 0 auto 2rem;
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid var(--gold);
-            position: relative;
-        }
-
-        .profile img, .profile video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Time Display */
-        .time-container {
-            background: rgba(23, 5, 30, 0.9);
-            border: 1px solid var(--gold);
-            /* REMOVED: box-shadow and inset glow */
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .time-container::before {
-            content: none;
-        }
-
-        /* Modals */
-        .modal-overlay {
-            background: rgba(11, 14, 49, 0.9);
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background: #17051e;
-            border: 1px solid var(--gold);
-            /* REMOVED: box-shadow (glow) */
-            border-radius: 16px;
-            animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes modalSlideIn {
-            from { transform: translateY(-40px) scale(0.9); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
-        }
-
-        /* Inputs */
-        input, textarea, select {
-            background: rgba(11, 14, 49, 0.9) !important;
-            border: 1px solid rgba(0, 200, 224, 0.4);
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            border-color: var(--gold);
-            /* REMOVED: box-shadow (glow) */
-            outline: none;
-            background: #0b0e31 !important;
-        }
-
-        select option {
-            background: var(--dark-stone);
-            color: #fff;
-            padding: 10px;
-        }
-
-        ::placeholder {
-            color: rgba(0, 200, 224, 0.5);
-            opacity: 1;
-        }
-
-        .modal-content code {
-            background: rgba(0, 0, 0, 0.4);
-            color: var(--gold);
-            padding: 3px 6px;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 12px; }
-        ::-webkit-scrollbar-track { background: #0b0e31; }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--lava-orange), var(--gold));
-            border-radius: 6px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--gold), var(--flame-red));
-        }
-
-        /* Logo Animation */
-        .logo-pulse {
-            animation: logoPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes logoPulse {
-            0%, 100% {
-                transform: scale(1);
-                /* REMOVED: filter: drop-shadow */
-            }
-            50% {
-                transform: scale(1.15);
-                /* REMOVED: filter: drop-shadow */
-            }
-        }
-
-        /* Footer */
-        footer {
-            background: #0b0e31;
-            border-top: 1px solid rgba(0, 200, 224, 0.3);
-            margin-top: auto;
-            height: 70px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0 1rem;
-            /* REMOVED: box-shadow */
-        }
-
-        footer p:first-child {
-            font-size: 14px;
-        }
-
-        /* Utility Classes */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .hidden { display: none; }
-
-        /* Light Mode Override */
-        body.light-mode #bg-image {
-            opacity: 1 !important;
-            filter: saturate(1.15);
-        }
-        body.light-mode #bg-video {
-            opacity: 0.35;
-            z-index: 1;
-        }
-    </style>
+  </style>
 </head>
 <body>
+  <!-- CONTAINER UTAMA (SIMULASI HP) -->
+  <div class="app-container">
 
-    <!-- Background -->
-    <div id="bg-container">
-        <video id="bg-video" class="bg-media" autoplay muted playsinline>
-            <source src="https://files.catbox.moe/gpwsaa.mp4" type="video/mp4">
-        </video>
-        <img id="bg-image" class="bg-media" src="https://i.imghippo.com/files/eJmg6984JU.jpg" alt="Hayabusa Shura Background">
-    </div>
-    <canvas id="particle-canvas"></canvas>
+      <!-- LOADING SCREENSHOT -->
+      <div class="loading-overlay" id="loadingOverlay">
+          <div class="spinner"></div>
+          <div>Memproses Kualitas 4K...</div>
+      </div>
 
-    <!-- Navbar -->
-    <nav class="navbar fixed top-0 left-0 right-0 z-50 content-layer" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <!-- Logo -->
-                <div id="logo-container" style="display: flex; align-items: center; cursor: pointer; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
-                    <img src="https://i.imghippo.com/files/EePl9866XxI.png" alt="Hayabusa Shura Logo" class="logo-pulse" style="height: 50px; width: auto; border-radius: 50%;" draggable="false">
-                    <span class="font-cinzel gold-text" style="font-weight: 700; font-size: 1.25rem; letter-spacing: 0.05em; margin-left: 1rem;">MLBB HAYABUSA</span>
+      <div class="topbar">
+        <img src="https://i.imghippo.com/files/wC5348bFU.jpg" draggable="false" class="locked-image" alt="Top Bar" crossorigin="anonymous" />
+      </div>
+      
+      <!-- CONTENT AREA (SCROLLABLE) -->
+      <div class="list" id="chatList">
+          <!-- Chat items will be injected here -->
+      </div>
+
+      <!-- FAB -->
+      <div class="fab" title="Buat Chat Baru" onclick="openEditor()">
+        <img id="fabIcon" src="https://i.imghippo.com/files/toKE4058Rk.png" draggable="false" alt="New Chat" style="transform: translate(15px, 10px); width: 100%;" crossorigin="anonymous">
+      </div>
+
+      <div class="bottom">
+        <img src="https://i.imghippo.com/files/JV5005ev.jpg" draggable="false" class="locked-image" alt="Bottom Bar" crossorigin="anonymous" />
+      </div>
+
+      <!-- EDITOR MODAL -->
+      <div class="modal-overlay" id="editorModal">
+        <div class="modal-container">
+          <div class="modal-header">
+            <div class="modal-title" id="modalTitle">Edit Chat</div>
+            <div class="header-actions">
+                <button class="btn-header-icon" title="Ganti Tema" onclick="toggleTheme()">
+                    <svg id="themeIcon" viewBox="0 0 24 24">
+                        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                    </svg>
+                </button>
+
+                <button class="btn-header-icon" title="Download Screenshot" onclick="downloadFromModal()">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19,9h-4V3H9v6H5l7,7L19,9z M5,18v2h14v-2H5z"/>
+                    </svg>
+                </button>
+                
+                <button class="btn-close-icon" onclick="closeEditor()">&times;</button>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Nama Kontak</label>
+            <input type="text" class="form-input" id="inpName" placeholder="Nama...">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Pesan Terakhir</label>
+            <input type="text" class="form-input" id="inpMsg" placeholder="Pesan...">
+          </div>
+
+          <div class="row">
+            <div class="form-group" style="flex:1">
+              <label class="form-label">Waktu</label>
+              <input type="text" class="form-input" id="inpTime" placeholder="12:00">
+            </div>
+            <div class="form-group" style="width:80px">
+              <label class="form-label">Unread</label>
+              <input type="number" class="form-input" id="inpUnread" value="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Foto Profil</label>
+            <div class="avatar-selector">
+                <div class="avatar-preview-small" id="avatarPrev">A</div>
+                <div style="flex:1">
+                    <input type="text" class="form-input" id="inpAvatarText" placeholder="Ketik Inisial" style="margin-bottom:6px; font-size:13px; padding:8px;">
+                    <label class="file-btn">
+                        + Upload Foto
+                        <input type="file" id="inpAvatarFile" accept="image/*" style="display:none">
+                    </label>
                 </div>
-
-                <!-- Desktop Nav -->
-                <div style="display: none;" class="desktop-nav">
-                    <div class="nav-item relative group" style="display: inline-block; position: relative;">
-                        <button class="flame-text" style="display: flex; align-items: center; gap: 0.5rem; background: none; border: none; cursor: pointer; font-family: 'Cinzel', serif; font-size: 0.875rem; text-transform: uppercase;">
-                            <i class="fas fa-moon"></i>
-                            <span>Forge</span>
-                            <i class="fas fa-chevron-down" style="font-size: 0.75rem; transition: transform 0.3s;"></i>
-                        </button>
-                        <div class="dropdown" style="position: absolute; right: 0; width: 320px; padding: 1.5rem; margin-top: 0.75rem;">
-                            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Craft Portal</h3>
-                            <button onclick="showAddLinkModal()" class="btn-secondary" style="width: 100%; font-size: 0.875rem; margin-bottom: 1rem;">
-                                <i class="fas fa-plus" style="margin-right: 0.5rem;"></i>Tambahkan Portal
-                            </button>
-
-                            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Data Vault</h3>
-                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
-                                <button onclick="importData()" class="btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.5rem 1rem;"><i class="fas fa-upload" style="margin-right: 0.25rem;"></i>Import</button>
-                                <button onclick="backupData()" class="btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.5rem 1rem;"><i class="fas fa-download" style="margin-right: 0.25rem;"></i>Backup</button>
-                            </div>
-
-                            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Purge</h3>
-                            <button onclick="showConfirmationModal('Unleash the shadows?', resetAllSettings)" class="btn-secondary" style="width: 100%; font-size: 0.875rem;">
-                                <i class="fas fa-skull-crossbones" style="margin-right: 0.5rem;"></i>Reset Semua
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="mobile-nav-toggle">
-                    <button id="mobile-menu-button" class="flame-text" style="background: none; border: none; font-size: 2rem; cursor: pointer; outline: none;">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
             </div>
+            <input type="hidden" id="currentImageBase64">
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn btn-danger" id="btnDelete" onclick="tryDelete()">Hapus</button>
+            <button class="btn btn-primary" onclick="saveChat()">Simpan</button>
+          </div>
         </div>
-    </nav>
+      </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu-overlay" class="fixed inset-0 z-50 hidden" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 55;" onclick="closeMobileMenu()"></div>
-    <div id="mobile-menu" style="padding: 2rem 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid rgba(0, 200, 224, 0.3);">
-            <span class="font-cinzel" style="font-size: 1.125rem; color: var(--gold);">CRAFT</span>
-            <button onclick="closeMobileMenu()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gold);">
-                <i class="fas fa-times"></i>
-            </button>
+      <!-- CUSTOM CONFIRM MODAL -->
+      <div class="confirm-overlay" id="confirmModal">
+        <div class="confirm-box">
+          <div class="confirm-text" id="confirmText">Konfirmasi?</div>
+          <div class="confirm-buttons">
+            <button class="c-btn c-btn-cancel" onclick="closeConfirm()">Batal</button>
+            <button class="c-btn c-btn-ok" id="confirmOkBtn">Ya</button>
+          </div>
         </div>
+      </div>
 
-        <div style="flex-grow: 1; overflow-y: auto;">
-            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-bottom: 0.75rem; margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Portal</h3>
-            <button onclick="showAddLinkModal(); closeMobileMenu();" class="btn-secondary" style="width: 100%; font-size: 0.875rem; margin-bottom: 1rem;">
-                <i class="fas fa-plus" style="margin-right: 0.5rem;"></i>Tambah Portal
-            </button>
+      <!-- TOAST NOTIFICATION -->
+      <div class="toast" id="toast">Notifikasi</div>
 
-            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-top: 1rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">Data</h3>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 1rem;">
-                <button onclick="importData(); closeMobileMenu();" class="btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.5rem 1rem;"><i class="fas fa-upload" style="margin-right: 0.25rem;"></i>Import</button>
-                <button onclick="backupData(); closeMobileMenu();" class="btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.5rem 1rem;"><i class="fas fa-download" style="margin-right: 0.25rem;"></i>Backup</button>
+  </div> <!-- END APP CONTAINER -->
+
+  <script>
+    const avatarColors = [
+        '#00A884', '#FF5252', '#FF9800', '#3F51B5', '#2196F3', 
+        '#9C27B0', '#00BCD4', '#4CAF50', '#795548', '#607D8B', '#E91E63'
+    ];
+
+    function getRandomColor() {
+        return avatarColors[Math.floor(Math.random() * avatarColors.length)];
+    }
+
+    // DATA DUMMY YANG LEBIH BANYAK AGAR BISA SCROLL
+    let chats = [
+      {name:'Tiara Cantik ❤️', msg:'Semangat terus ya ayang Fazry kerjanya!', time:'20.45', unread:2, avatar:'T', isImage: false, color: getRandomColor()},
+      {name:'Vania', msg:'Jangan nyerah Fazry, kamu pasti sukses!', time:'20.41', unread:5, avatar:'V', isImage: false, color: getRandomColor()},
+      {name:'Amelia', msg:'Inget mimpi-mimpi kamu Fazry, gas terus!', time:'20.35', unread:1, avatar:'A', isImage: false, color: getRandomColor()},
+      {name:'Bella', msg:'Fazry hebat, aku bangga banget sama kamu', time:'20.25', unread:0, avatar:'B', isImage: false, color: getRandomColor()},
+      {name:'Citra', msg:'Lelah boleh, nyerah jangan ya Fazry', time:'19.15', unread:3, avatar:'C', isImage: false, color: getRandomColor()},
+      {name:'Dinda', msg:'Fokus sama tujuan kamu Fazry, semangat!', time:'18.30', unread:0, avatar:'D', isImage: false, color: getRandomColor()},
+      {name:'Erika', msg:'Semoga harimu menyenangkan ya Fazry', time:'17.45', unread:1, avatar:'E', isImage: false, color: getRandomColor()},
+      {name:'Fani', msg:'Fazry jangan lupa istirahat dan makan ya', time:'16.20', unread:0, avatar:'F', isImage: false, color: getRandomColor()},
+      {name:'Gisel', msg:'Masa depan cerah menanti Fazry, ayo bangkit!', time:'14.10', unread:0, avatar:'G', isImage: false, color: getRandomColor()},
+      {name:'Hani', msg:'Apapun rintangannya, Fazry pasti bisa lewatin', time:'13.00', unread:1, avatar:'H', isImage: false, color: getRandomColor()},
+      {name:'Intan', msg:'Percaya sama prosesnya ya Fazry', time:'Kemarin', unread:0, avatar:'I', isImage: false, color: getRandomColor()},
+      {name:'Jessica', msg:'Doa terbaik selalu buat Fazry disana', time:'Kemarin', unread:0, avatar:'J', isImage: false, color: getRandomColor()},
+    ];
+    
+    let editIdx = -1;
+    let tempDraftColor = '';
+    let isLightMode = false;
+
+    const listEl = document.getElementById('chatList');
+    const modal = document.getElementById('editorModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const inpName = document.getElementById('inpName');
+    const inpMsg = document.getElementById('inpMsg');
+    const inpTime = document.getElementById('inpTime');
+    const inpUnread = document.getElementById('inpUnread');
+    const inpAvatarText = document.getElementById('inpAvatarText');
+    const inpAvatarFile = document.getElementById('inpAvatarFile');
+    const avatarPrev = document.getElementById('avatarPrev');
+    const hiddenBase64 = document.getElementById('currentImageBase64');
+    const btnDelete = document.getElementById('btnDelete');
+    const confirmModal = document.getElementById('confirmModal');
+    const confirmTextEl = document.getElementById('confirmText');
+    const confirmOkBtn = document.getElementById('confirmOkBtn');
+    const toastEl = document.getElementById('toast');
+    const themeIcon = document.getElementById('themeIcon');
+    const fabIcon = document.getElementById('fabIcon');
+
+    function toggleTheme() {
+        isLightMode = !isLightMode;
+        if(isLightMode) {
+            document.body.setAttribute('data-theme', 'light');
+            themeIcon.innerHTML = '<path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.79 1.41-1.41-1.79-1.79-1.41 1.41zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/>';
+            fabIcon.src = "https://i.imghippo.com/files/NLt8463pM.png";
+        } else {
+            document.body.removeAttribute('data-theme');
+            themeIcon.innerHTML = '<path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>';
+            fabIcon.src = "https://i.imghippo.com/files/toKE4058Rk.png";
+        }
+    }
+
+    function render() {
+      listEl.innerHTML = '';
+      chats.forEach((c, idx) => {
+        const el = document.createElement('div');
+        el.className = 'item';
+        el.onclick = () => openEditor(idx);
+        let avatarContent = c.avatar;
+        if(!c.color) c.color = getRandomColor();
+        if(c.isImage) {
+            avatarContent = `<img src="${c.avatar}" alt="img">`;
+        }
+        el.innerHTML = `
+          <div class="avatar" style="background-color: ${c.color}">
+            ${avatarContent}
+          </div>
+          <div class="meta">
+            <div class="top-row">
+                <div class="name">${c.name}</div>
+                <div class="time">${c.time}</div>
             </div>
-
-            <h3 class="font-cinzel" style="font-size: 0.875rem; margin-top: 1rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold);">System</h3>
-            <button onclick="showConfirmationModal('Unleash reset?', resetAllSettings); closeMobileMenu();" class="btn-secondary" style="width: 100%; font-size: 0.875rem; margin-bottom: 1rem;">
-                <i class="fas fa-skull-crossbones" style="margin-right: 0.5rem;"></i>Reset Semua
-            </button>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <main class="container content-layer" style="padding-top: 120px; padding-bottom: 2rem;">
-        <header style="text-align: center; margin-bottom: 3rem;">
-            <!-- Profile -->
-            <div class="profile">
-                <video src="https://files.catbox.moe/gs4lq5.mp4" alt="Profile Video" autoplay loop muted playsinline
-                style="object-position: 50% 25%; will-change: transform;">
-                </video>
+            <div class="bot-row">
+                <div class="preview">${c.msg || ''}</div>
+                ${c.unread > 0 ? `<div class="badge">${c.unread}</div>` : ''}
             </div>
+          </div>
+        `;
+        listEl.appendChild(el);
+      });
+    }
 
-            <!-- Hero Title -->
-            <div style="display: inline-block; margin-bottom: 1.5rem;">
-                <h1 class="font-playfair" data-text="HAYABUSA SHURA" style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; color: var(--gold);">HAYABUSA SHURA</h1>
-            </div>
-            <p class="font-cinzel flame-text" style="font-size: 1.125rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">MLBB Creator &amp; Web Developer</p>
-            <p style="max-width: 42rem; margin: 1.5rem auto 0; font-size: 1rem; line-height: 1.6; color: rgba(0, 200, 224, 0.8);">
-                <!-- Optionally add a subtitle or description here -->
-            </p>
-        </header>
+    function openEditor(idx = -1) {
+      editIdx = idx;
+      inpAvatarFile.value = '';
+      if(idx === -1) {
+        modalTitle.innerText = "Chat Baru";
+        inpName.value = "";
+        inpMsg.value = "";
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        inpTime.value = `${hours}:${minutes}`;
+        inpUnread.value = 1;
+        inpAvatarText.value = "";
+        hiddenBase64.value = "";
+        btnDelete.style.display = "none";
+        tempDraftColor = getRandomColor();
+        updateAvatarPreview('?', false, tempDraftColor);
+      } else {
+        const c = chats[idx];
+        modalTitle.innerText = "Edit Chat";
+        inpName.value = c.name;
+        inpMsg.value = c.msg;
+        inpTime.value = c.time;
+        inpUnread.value = c.unread;
+        btnDelete.style.display = "block";
+        tempDraftColor = c.color;
+        if(c.isImage) {
+            hiddenBase64.value = c.avatar;
+            inpAvatarText.value = "";
+            updateAvatarPreview(c.avatar, true, tempDraftColor);
+        } else {
+            hiddenBase64.value = "";
+            inpAvatarText.value = c.avatar;
+            updateAvatarPreview(c.avatar, false, tempDraftColor);
+        }
+      }
+      modal.classList.add('open');
+    }
 
-        <!-- Time Display -->
-        <div style="display: flex; justify-content: center; margin-bottom: 3rem;">
-            <div class="time-container" style="padding: 1.5rem 2rem; text-align: center;">
-                <div id="time" class="font-cinzel gold-text" style="font-size: 2.5rem; font-weight: 700;">00:00:00</div>
-                <div id="date" class="font-cinzel flame-text" style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.5rem;">Loading...</div>
-            </div>
-        </div>
+    function closeEditor() {
+      modal.classList.remove('open');
+    }
 
-        <!-- Portal Grid -->
-        <div id="portals-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
-            <!-- Portal cards rendered by JS -->
-        </div>
-    </main>
+    inpAvatarText.addEventListener('input', (e) => {
+        if(e.target.value) {
+            hiddenBase64.value = "";
+            updateAvatarPreview(e.target.value, false, tempDraftColor);
+        }
+    });
 
-    <!-- Footer -->
-    <footer class="content-layer" style="text-align: center; color: #fff;">
-        <p class="font-cinzel" style="font-size: 0.875rem; opacity: 0.85;">© 2025 Created by SHURA | All Rights Reserved</p>
-        <p class="gold-text font-cinzel" style="font-size: 0.75rem; margin-top: 0.5rem;">Forged by Uranus Support Technology</p>
-    </footer>
+    inpAvatarFile.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                hiddenBase64.value = e.target.result; 
+                inpAvatarText.value = "";
+                updateAvatarPreview(e.target.result, true, tempDraftColor);
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
 
-    <!-- Add Portal Modal -->
-    <div id="add-portal-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden modal-overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: none; align-items: center; justify-content: center; z-index: 50;">
-        <div class="modal-content" style="max-width: 28rem; width: 100%; margin: 0 1.5rem; position: relative; padding: 2rem;">
-            <button onclick="document.getElementById('add-portal-modal').style.display = 'none'" style="position: absolute; top: 1rem; right: 1rem; font-size: 2rem; background: none; border: none; cursor: pointer; transition: all 0.3s;" class="flame-text">×</button>
+    function updateAvatarPreview(val, isImg, bgColor) {
+        avatarPrev.style.backgroundColor = bgColor;
+        if(isImg) {
+            avatarPrev.innerHTML = `<img src="${val}" style="width:100%;height:100%;object-fit:cover">`;
+        } else {
+            avatarPrev.innerHTML = val.substring(0,2).toUpperCase();
+        }
+    }
+
+    function saveChat() {
+        const name = inpName.value || "Tanpa Nama";
+        let finalAvatar = "A";
+        let isImage = false;
+        if(hiddenBase64.value) {
+            finalAvatar = hiddenBase64.value;
+            isImage = true;
+        } else {
+            finalAvatar = inpAvatarText.value.substring(0,2).toUpperCase() || name.charAt(0).toUpperCase();
+        }
+        const newObj = {
+            name: name,
+            msg: inpMsg.value,
+            time: inpTime.value,
+            unread: parseInt(inpUnread.value) || 0,
+            avatar: finalAvatar,
+            isImage: isImage,
+            color: tempDraftColor
+        };
+        if(editIdx === -1) {
+            chats.unshift(newObj);
+        } else {
+            chats[editIdx] = newObj;
+        }
+        render();
+        closeEditor();
+        showToast("Chat disimpan");
+    }
+
+    function tryDelete() {
+        closeEditor();
+        setTimeout(() => {
+             showConfirm(() => {
+                if(editIdx > -1) {
+                    chats.splice(editIdx, 1);
+                    render();
+                    showToast("Chat dihapus");
+                }
+            }, "Hapus chat ini?");
+        }, 200);
+    }
+
+    let onConfirmAction = null;
+    function showConfirm(action, message) {
+        onConfirmAction = action;
+        confirmTextEl.innerText = message || "Konfirmasi?";
+        confirmOkBtn.innerText = message && message.includes("Hapus") ? "Hapus" : "Ya";
+        confirmModal.classList.add('show');
+    }
+
+    function closeConfirm() {
+        confirmModal.classList.remove('show');
+        onConfirmAction = null;
+    }
+
+    confirmOkBtn.onclick = () => {
+        if(onConfirmAction) onConfirmAction();
+        closeConfirm();
+    }
+
+    let toastTimeout;
+    function showToast(msg) {
+        toastEl.innerText = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toastEl.classList.remove('show');
+        }, 3000);
+    }
+
+    function downloadFromModal() {
+        closeEditor();
+        setTimeout(() => {
+             showConfirm(processScreenshot, "Simpan tampilan dengan kualitas 4K?");
+        }, 350);
+    }
+
+    function processScreenshot() {
+        const loading = document.getElementById('loadingOverlay');
+        loading.classList.add('show');
+        const fab = document.querySelector('.fab');
+        fab.style.display = 'none';
+        
+        // Scroll container to top
+        const list = document.querySelector('.list');
+        // Optional: Scroll to top before screenshot if needed
+        // list.scrollTop = 0; 
+
+        const appContainer = document.querySelector('.app-container');
+        
+        setTimeout(() => {
+            let currentBg = isLightMode ? '#ffffff' : '#04070a';
             
-            <h2 class="font-cinzel gold-text" style="font-size: 1.5rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Craft New Portal</h2>
+            const qualityScale = 5; 
 
-            <form id="portal-form" style="display: flex; flex-direction: column; gap: 1rem;">
-                <div>
-                    <label for="portal-name" class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Portal Name</label>
-                    <input type="text" id="portal-name" style="width: 100%; padding: 0.75rem; border-radius: 8px; font-size: 1rem;" placeholder="Enter portal name" required>
-                </div>
-
-                <div>
-                    <label for="portal-url" class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Destination URL</label>
-                    <input type="url" id="portal-url" style="width: 100%; padding: 0.75rem; border-radius: 8px; font-size: 1rem;" placeholder="https://your-link.com" required>
-                </div>
-
-                <div>
-                    <label for="portal-icon" class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Portal Icon</label>
-                    <select id="portal-icon" style="width: 100%; padding: 0.75rem; border-radius: 8px; font-size: 1rem; appearance: none;">
-                        <option value="fas fa-mask">🎭 Mask</option>
-                        <option value="fas fa-crosshairs">🎯 Target</option>
-                        <option value="fas fa-dragon">🐉 Dragon</option>
-                        <option value="fas fa-fan">🌀 Fan</option>
-                        <option value="fas fa-star">⭐ Star</option>
-                        <option value="fas fa-heart">❤️ Heart</option>
-                        <option value="fas fa-bolt">⚡ Bolt</option>
-                        <option value="fab fa-whatsapp">💬 WhatsApp</option>
-                        <option value="fab fa-youtube">▶️ YouTube</option>
-                        <option value="fab fa-instagram">📸 Instagram</option>
-                        <option value="fab fa-tiktok">🎵 TikTok</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label for="portal-description" class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Description</label>
-                    <textarea id="portal-description" rows="2" style="width: 100%; padding: 0.75rem; border-radius: 8px; font-size: 1rem; resize: vertical;" placeholder="Brief description..."></textarea>
-                </div>
-
-                <div>
-                    <label class="font-cinzel gold-text" style="display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em;">Portal Theme</label>
-                    <div style="display: flex; justify-content: space-around; padding-top: 0.5rem;">
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: all 0.3s;">
-                            <input type="radio" name="portal-color" value="#4a0072" style="width: 1.25rem; height: 1.25rem; accent-color: var(--lava-orange);" checked>
-                            <span class="font-cinzel" style="font-weight: 700; color: var(--lava-orange);">Purple</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: all 0.3s;">
-                            <input type="radio" name="portal-color" value="#ce00a7" style="width: 1.25rem; height: 1.25rem; accent-color: var(--flame-red);">
-                            <span class="font-cinzel" style="font-weight: 700; color: var(--flame-red);">Magenta</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: all 0.3s;">
-                            <input type="radio" name="portal-color" value="#00c8e0" style="width: 1.25rem; height: 1.25rem; accent-color: var(--gold);">
-                            <span class="font-cinzel" style="font-weight: 700; color: var(--gold);">Teal</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div style="display: flex; justify-content: flex-end; gap: 0.75rem; padding-top: 0.5rem;">
-                    <button type="button" onclick="document.getElementById('add-portal-modal').style.display = 'none'" class="btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">
-                        Cancel
-                    </button>
-                    <button type="submit" class="btn-lava" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">
-                        Craft
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Confirmation Modal -->
-    <div id="confirmation-modal" class="fixed inset-0 flex items-center justify-center hidden modal-overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: none; align-items: center; justify-content: center; z-index: 60;">
-        <div class="modal-content" style="max-width: 28rem; width: 100%; margin: 0 1rem; position: relative; padding: 2rem; text-align: center;">
-            <h2 class="font-cinzel flame-text" style="font-size: 1.25rem; margin-bottom: 1rem; font-weight: 700;">Confirm Action</h2>
-            <p id="confirmation-message" style="margin-bottom: 1.5rem; font-size: 1.125rem; color: rgba(0, 200, 224, 0.9);">Are you sure?</p>
-            <div style="display: flex; justify-content: center; gap: 1rem;">
-                <button id="confirm-cancel-btn" class="btn-secondary" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">
-                    Cancel
-                </button>
-                <button id="confirm-ok-btn" class="btn-lava" style="padding: 0.75rem 1.5rem; font-size: 0.875rem;">
-                    Confirm
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <input type="file" id="import-file-input" class="hidden" style="display: none;" accept=".zip,.txt,application/json">
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let isVideoFinished = false;
-
-            const bgVideo = document.getElementById('bg-video');
-            const bgImage = document.getElementById('bg-image');
-
-            if (bgVideo && bgImage) {
-                const handleVideoEnd = () => {
-                    bgVideo.style.opacity = '0';
-                    if (!document.body.classList.contains('light-mode')) {
-                        bgImage.style.opacity = '0.45'; 
-                    }
-                    isVideoFinished = true;
-                };
-
-                const handleVideoError = (e) => {
-                    console.error("Video background failed:", e);
-                    handleVideoEnd();
-                };
-                
-                bgVideo.addEventListener('ended', handleVideoEnd);
-                bgVideo.addEventListener('error', handleVideoError);
-
-                const playPromise = bgVideo.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.warn("Autoplay blocked:", error);
-                        handleVideoEnd();
-                    });
-                }
-            }
-
-            const logoContainer = document.getElementById('logo-container');
-            const portalsGrid = document.getElementById('portals-grid');
-            const portalForm = document.getElementById('portal-form');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-            const timeDisplay = document.getElementById('time');
-            const dateDisplay = document.getElementById('date');
-            const importFileInput = document.getElementById('import-file-input');
-            const confirmationModal = document.getElementById('confirmation-modal');
-            const confirmationMessage = document.getElementById('confirmation-message');
-            const confirmOkBtn = document.getElementById('confirm-ok-btn');
-            const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
-
-            let portals = [];
-            let onConfirmCallback = null;
-
-            // Default portals for Hayabusa Shura theme
-            const defaultPortals = [
-                { name: 'BY ONE SEKARANG', url: 'https://website-induk.vercel.app/', icon: 'fas fa-trophy', color: '#ffcc00', description: 'Hadapi aku sekarang. Buktikan siapa yang pantas menjadi Raja dan mendapatkan hadiah.' },
-                { name: 'TESTIMONI BY ONE', url: 'https://testimoni-dun.vercel.app/', icon: 'fas fa-star', color: '#ff2a6d', description: 'Semua kekalahan dan penderitaan kalian saat by one lawan Master ada di sini.' },
-                { name: 'Uranus Studio', url: 'https://uranustudio.vercel.app/', icon: 'fas fa-store', color: '#d300c5', description: 'Solusi digital untuk mengubah kreativitas menjadi penghasilan.' },
-                { name: 'Uranus Space', url: 'https://uranuspace.vercel.app/', icon: 'fas fa-rocket', color: '#6C63FF', description: 'Manajemen keuangan, waktu, split bill, my diary & HTML akses kapan saja.' },
-                { name: 'Uranustify (Desktop)', url: 'https://uranustify-desktop.vercel.app/', icon: 'fas fa-desktop', color: '#00ff9d', description: 'Simpan & dengarkan musik favoritmu tanpa batas.' },
-                { name: 'Uranustify (Mobile)', url: 'https://uranustify.vercel.app/', icon: 'fas fa-mobile-alt', color: '#00ff9d', description: 'Simpan & dengarkan musik tanpa iklan.' },
-                { name: 'Uranus Crypto', url: 'https://uranus-crypto-three.vercel.app/', icon: 'fas fa-chart-line', color: '#f7931a', description: 'Strategi trading kripto cerdas dengan fokus pada profit konsisten dan risiko terukur.' },
-                { name: 'Uranus Super', url: 'https://trakteer.id/uranusfazry/shop/uranus-super-paket-lengkap-uranus-4-alat-digital-MY9SU', icon: 'fas fa-wallet', color: '#9D72FF', description: 'Paket premium berisi 4 alat Uranus Studio, Uranustify, Uranus Crypto, dan Uranus Space dengan harga paling murah.' },
-                { name: 'Uranus Supreme', url: 'https://uranusupreme.vercel.app', icon: 'fas fa-crown', color: '#FFD700', description: 'Akses website premium dengan pengalaman lebih cepat dan lebih eksklusif.' },
-                { name: 'Uranus Support', url: 'https://uranusupport.vercel.app/', icon: 'fas fa-star', color: '#FF5700', description: 'Kumpulan website induk bertema MLBB, dirancang khusus untuk kreator MLBB.' },
-                { name: 'Uranus Store', url: 'https://buylink.id/uranusfazry', icon: 'fas fa-store', color: '#4CAF50', description: 'Tempat top up termurah dan lengkap untuk pulsa, paket data, voucher game, dan kebutuhan digital lainnya.' },
-                { name: 'Uranus Shop', url: 'https://trakteer.id/uranusfazry/shop', icon: 'fas fa-gem', color: '#ffffff', description: 'Kumpulan karya premium Uranus siap pakai dengan inovasi dan kualitas terbaik.' },
-                { name: 'Uranus WIFI', url: 'https://uranusfazry-wifi-wireless.vercel.app/', icon: 'fas fa-wifi', color: '#1DA1F2', description: 'Internet wireless cepat & stabil untuk kebutuhan online Anda.' },
-                { name: 'Uranus Play', url: 'https://uranusplay.vercel.app/', icon: 'fas fa-gamepad', color: '#9147ff', description: 'Game Multiplayer terbaik No. 1 tanpa install.' },
-                { name: 'Uranus Blogger', url: 'https://uranusfazry.blogspot.com/', icon: 'fas fa-newspaper', color: '#FF5700', description: 'Artikel yang menyajikan informasi singkat, padat, dan bermanfaat.' },
-                { name: 'Uranus Studio V2', url: 'https://trakteer.id/uranusfazry/shop/uranus-studio-unilD', icon: 'fas fa-wand-sparkles', color: '#8A2BE2', description: 'Tempat kreator bikin desain brat V2, gambar 4K, anime, dan konten keren dalam satu platform.' },
-                { name: 'Brat Generator', url: 'https://bratgenerator.vercel.app/', icon: 'fas fa-child', color: '#39FF14', description: 'Ciptakan Kalimat menjadi gambar dengan mudah.' },
-                { name: 'Brat Generator V2', url: 'https://bratgenerator2.vercel.app/', icon: 'fas fa-child', color: '#FF4DFF', description: 'Ubah teks menjadi gambar secara instan.' },
-                { name: 'Uranus Loader', url: 'https://uranusloader.vercel.app/', icon: 'fas fa-cloud-download-alt', color: '#00E5FF', description: 'Download video TikTok dengan kualitas terbaik dan tanpa watermark.' },
-                { name: 'Uranus Loader V2', url: 'https://uranusloader2.vercel.app/', icon: 'fas fa-download', color: '#C29D5F', description: 'Unduh konten TikTok secara cepat dan bersih dalam satu klik.' },
-                { name: 'WhatsApp Generator', url: 'https://wagenerator.vercel.app/', icon: 'fas fa-comment-dots', color: '#25D366', description: 'Simulasi chat WhatsApp realistis dengan hasil 4K tanpa batas.' },
-                { name: 'Iphone Generator', url: 'https://iphonev4.vercel.app/', icon: 'fas fa-mobile-screen', color: '#FFFFFF', description: 'Generator iPhone Quoted bergaya putih bersih khas iPhone, tampil elegan dan minimalis.' },
-                { name: 'Iphone Generator V2', url: 'https://iphonev5.vercel.app/', icon: 'fas fa-mobile-screen', color: '#007AFF', description: 'Tampilan iPhone Quoted mode gelap dengan nuansa profesional dan eksklusif khas Apple.' },
-                { name: 'Iphone Generator V3', url: 'https://iphonev6.vercel.app/', icon: 'fas fa-mobile-screen', color: '#7D7AFF', description: 'Desain iPhone Quoted premium dengan warna ungu kebiruan khas iPhone Pro, terlihat mewah dan futuristik.' },
-                { name: 'Uranus Web & App Development', url: 'https://wa.me/6287872521809?text=Halo,%20saya%20tertarik%20dengan%20aplikasi%20atau%20website%20seperti%20Uranus%20Fazry', icon: 'fas fa-laptop-code', color: '#25D366', description: 'Dapatkan website atau aplikasi dengan harga terjangkau.' },
-                { name: 'Skyway Community', url: 'https://skyway-chi.vercel.app/', icon: 'fas fa-users', color: '#191970', description: 'Komunitas yang menjelajahi sisi gelap kehidupan.' },
-                { name: 'Contact Me', url: 'https://mail.google.com/mail/?view=cm&to=irawanfazry697@gmail.com', icon: 'fas fa-envelope', color: '#EA4335', description: 'Get in touch for collaborations or inquiries.' }
-            ];
-
-            function initPortalApp() {
-                portals = JSON.parse(localStorage.getItem('portals')) || defaultPortals;
-                renderPortals();
-                updateTime();
-                setInterval(updateTime, 1000);
-
-                logoContainer.addEventListener('click', () => {
-                    // Toggle light mode only when video is considered finished
-                    if (!isVideoFinished) {
-                        return;
-                    }
-                    document.body.classList.toggle('light-mode');
-                    if (!document.body.classList.contains('light-mode') && bgVideo.style.opacity === '0') {
-                        bgImage.style.opacity = '0.45';
-                    }
-                });
-
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.add('open');
-                    mobileMenuOverlay.classList.remove('hidden');
-                    mobileMenuOverlay.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                });
-
-                mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
-                portalForm.addEventListener('submit', handlePortalFormSubmit);
-                importFileInput.addEventListener('change', handleFileImport);
-                confirmCancelBtn.addEventListener('click', () => {
-                    confirmationModal.classList.add('hidden');
-                    confirmationModal.style.display = 'none';
-                });
-                confirmOkBtn.addEventListener('click', () => {
-                    if (typeof onConfirmCallback === 'function') {
-                        onConfirmCallback();
-                    }
-                    confirmationModal.classList.add('hidden');
-                    confirmationModal.style.display = 'none';
-                    onConfirmCallback = null;
-                });
-
-                window.addEventListener('resize', updateNavDisplay);
-                updateNavDisplay();
-            }
-
-            function updateNavDisplay() {
-                const desktopNav = document.querySelector('.desktop-nav');
-                const mobileToggle = document.querySelector('.mobile-nav-toggle');
-                if (window.innerWidth >= 768) {
-                    if (desktopNav) desktopNav.style.display = 'block';
-                    if (mobileToggle) mobileToggle.style.display = 'none';
-                } else {
-                    if (desktopNav) desktopNav.style.display = 'none';
-                    if (mobileToggle) mobileToggle.style.display = 'block';
-                }
-            }
-
-            window.closeMobileMenu = function() {
-                mobileMenu.classList.remove('open');
-                mobileMenuOverlay.classList.add('hidden');
-                mobileMenuOverlay.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-
-            window.showConfirmationModal = function(message, callback) {
-                confirmationMessage.textContent = message;
-                onConfirmCallback = callback;
-                confirmationModal.classList.remove('hidden');
-                confirmationModal.style.display = 'flex';
-            }
-
-            function renderPortals() {
-                portalsGrid.innerHTML = '';
-
-                portals.forEach((portal, index) => {
-                    const portalElement = document.createElement('div');
-                    portalElement.style.height = '100%';
-
-                    const portalColor = portal.color || '#4a0072';
-                    const cardStyle = `color: ${portalColor}; border-color: ${portalColor};`;
-                    // REMOVED: text-shadow from style
-                    const textStyle = `color: ${portalColor};`;
-                    
-                    let iconClass = portal.icon || 'fas fa-mask';
-                    if (!portal.icon || (!portal.icon.startsWith('fa') && !portal.icon.startsWith('http') && !portal.icon.startsWith('data:image'))) {
-                        iconClass = 'fas fa-mask';
-                    }
-
-                    const iconHtml = (iconClass.startsWith('data:image') || iconClass.startsWith('http'))
-                        ? `<img src="${iconClass}" style="margin: 0 auto 1rem; height: 3rem; width: 3rem; object-fit: contain;" alt="${portal.name} icon" onerror="this.style.display='none'; this.nextSibling.style.display='block';"><i class="fas fa-mask" style="font-size: 3rem; margin-bottom: 1rem; display: none; ${textStyle}"></i>`
-                        : `<i class="${iconClass}" style="font-size: 3rem; margin-bottom: 1rem; ${textStyle}"></i>`;
-
-                    const descriptionHtml = portal.description ? portal.description : '&nbsp;';
-
-                    portalElement.innerHTML = `
-                        <div class="portal-card" style="${cardStyle} height: 100%;">
-                            <a href="${portal.url}" target="_blank" style="display: block; height: 100%; padding: 1.5rem; text-align: center; position: relative; text-decoration: none; color: inherit;">
-                                <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-                                    ${iconHtml}
-                                    <h3 class="font-cinzel" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; word-break: break-word; font-size: 1.125rem; margin-bottom: 0.5rem; ${textStyle}">${portal.name}</h3>
-                                    <p style="font-size: 0.875rem; color: rgba(0, 200, 224, 0.8); margin-top: 0.5rem; line-height: 1.4;">${descriptionHtml}</p>
-                                </div>
-                                
-                                <button onclick="event.preventDefault(); event.stopPropagation(); showConfirmationModal('Destroy portal ${portal.name}?', () => deletePortalAction(${index}))" class="delete-btn">
-                                    <i class="fas fa-times" style="font-size: 0.875rem;"></i>
-                                </button>
-                            </a>
-                        </div>
-                    `;
-
-                    portalsGrid.appendChild(portalElement);
-                });
-            }
-
-            function handlePortalFormSubmit(e) {
-                e.preventDefault();
-
-                const name = document.getElementById('portal-name').value;
-                const url = document.getElementById('portal-url').value || "#";
-                const description = document.getElementById('portal-description').value || "";
-                const icon = document.getElementById('portal-icon').value;
-                const color = document.querySelector('input[name="portal-color"]:checked').value;
-
-                addPortalToArray(name, url, icon, color, description);
-            }
-
-            function addPortalToArray(name, url, icon, color, description) {
-                portals.push({ name, url, icon, color, description });
-                savePortals();
-                renderPortals();
-                document.getElementById('add-portal-modal').classList.add('hidden');
-                document.getElementById('add-portal-modal').style.display = 'none';
-                resetPortalForm();
-            }
-
-            window.deletePortalAction = function(index) {
-                portals.splice(index, 1);
-                savePortals();
-                renderPortals();
-            }
-
-            function resetPortalForm() {
-                portalForm.reset();
-            }
-
-            function savePortals() {
-                localStorage.setItem('portals', JSON.stringify(portals));
-            }
-
-            window.showAddLinkModal = function() {
-                document.getElementById('add-portal-modal').classList.remove('hidden');
-                document.getElementById('add-portal-modal').style.display = 'flex';
-                resetPortalForm();
-                if (mobileMenu.classList.contains('open')) {
-                    closeMobileMenu();
-                }
-            }
-
-            function updateTime() {
-                const now = new Date();
-                timeDisplay.textContent = now.toLocaleTimeString('en-GB');
-                dateDisplay.textContent = now.toLocaleDateString('id-ID', {
-                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-                });
-            }
-
-            window.resetAllSettings = function() {
-                localStorage.removeItem('portals');
-                location.reload();
-            }
-
-            window.backupData = async () => {
-                const dataToBackup = {
-                    portals: JSON.parse(localStorage.getItem('portals')) || defaultPortals,
-                };
-                const dataStr = JSON.stringify(dataToBackup, null, 2);
-                try {
-                    const zip = new JSZip();
-                    zip.file("uranusfazry_backup.json", dataStr);
-                    const content = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
-                    const url = URL.createObjectURL(content);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'uranusfazry_backup.zip';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                } catch (error) {
-                    console.error("Error creating ZIP:", error);
-                    alert("Backup failed.");
-                }
-            };
-
-            window.importData = () => {
-                importFileInput.click();
-            };
-
-            async function handleFileImport(event) {
-                const file = event.target.files[0];
-                if (!file) return;
-
-                if (file.type === "application/zip" || file.name.endsWith(".zip")) {
-                    const reader = new FileReader();
-                    reader.onload = async (e) => {
-                        try {
-                            const zip = await JSZip.loadAsync(e.target.result);
-                            const backupFile = zip.file("uranusfazry_backup.json");
-                            if (backupFile) {
-                                const jsonContent = await backupFile.async("string");
-                                await processImportedData(jsonContent);
-                            } else {
-                                alert('Invalid ZIP file.');
-                            }
-                        } catch (error) {
-                            console.error('Error reading ZIP:', error);
-                            alert('Failed to read ZIP file.');
-                        }
-                    };
-                    reader.readAsArrayBuffer(file);
-                } else if (file.type === "text/plain" || file.type === "application/json" || file.name.endsWith(".txt")) {
-                    const reader = new FileReader();
-                    reader.onload = async (e) => {
-                        await processImportedData(e.target.result);
-                    };
-                    reader.readAsText(file);
-                } else {
-                    alert("Unsupported file type.");
-                }
-                event.target.value = '';
-            }
-
-            async function processImportedData(jsonContent) {
-                try {
-                    const importedData = JSON.parse(jsonContent);
-                    if (importedData && Array.isArray(importedData.portals)) {
-                        localStorage.setItem('portals', JSON.stringify(importedData.portals));
-                        showConfirmationModal('Data imported. Page will reload.', () => {
-                            location.reload();
+            html2canvas(appContainer, {
+                scale: qualityScale, 
+                useCORS: true, 
+                allowTaint: true,
+                backgroundColor: currentBg,
+                logging: false, 
+                ignoreElements: (element) => {
+                    return element.id === 'loadingOverlay';
+                },
+                onclone: (clonedDoc) => {
+                    if (isLightMode) {
+                        const images = clonedDoc.querySelectorAll('.locked-image');
+                        images.forEach(img => {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = img.naturalWidth || img.width; 
+                            canvas.height = img.naturalHeight || img.height;
+                            const ctx = canvas.getContext('2d');
+                            ctx.filter = 'invert(1) hue-rotate(180deg)';
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            img.src = canvas.toDataURL();
+                            img.style.filter = 'none'; 
                         });
-                    } else {
-                        alert('Invalid backup format.');
                     }
-                } catch (error) {
-                    console.error('Error parsing backup:', error);
-                    alert('Failed to parse backup file.');
+                    // Memastikan scrollbar tidak ikut terfoto (walaupun sudah di-hide di CSS)
+                    const clonedList = clonedDoc.getElementById('chatList');
+                    if(clonedList) {
+                        clonedList.style.overflow = 'visible'; 
+                    }
                 }
-            }
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'WA-Mock-Scroll-' + Date.now() + '.png';
+                link.href = canvas.toDataURL("image/png", 1.0);
+                link.click();
+                fab.style.display = 'flex';
+                loading.classList.remove('show');
+                showToast("Screenshot 4K berhasil disimpan!");
+            }).catch(err => {
+                console.error(err);
+                fab.style.display = 'flex';
+                loading.classList.remove('show');
+                showToast("Gagal membuat screenshot");
+            });
+        }, 800);
+    }
 
-            initPortalApp();
-        });
-    </script>
-
+    // INIT
+    render();
+  </script>
 </body>
 </html>
